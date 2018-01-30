@@ -11,6 +11,11 @@ export class IntroComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    const btn = document.getElementById('btn');
+
+    btn.addEventListener('click', function () {
+      alert('hello');
+    });
   }
 
 }
