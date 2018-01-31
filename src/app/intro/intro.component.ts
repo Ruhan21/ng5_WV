@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatCardModule} from '@angular/material/card';
+// import { ActivatedRoute } from "@angular/router"; //This is when you send through variables through url
 
 @Component({
   selector: 'app-intro',
