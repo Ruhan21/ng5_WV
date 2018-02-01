@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-
+import { FlexLayoutModule } from "@angular/flex-layout";
 import { MaterialModule } from './material.module';
 import { AppComponent } from './app.component';
 import { IntroComponent } from './intro/intro.component';
@@ -20,7 +20,8 @@ import { HeaderComponent } from './header/header.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

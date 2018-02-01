@@ -1,8 +1,25 @@
-<p>
-  intro works!
-</p>
 
-<mat-card>Simple card</mat-card>
+<div class="container" fxLayout>
+
+  <div class="main-images" fxFlex="60%" fxFlexOffset="20%">
+    <div style="background-image: url(../../assets/images/B1.jpg); background-size:cover; border:ridge; ">
+      <div style="min-height: 250px;">
+        <img src="../../assets/images/Logo.png"/>
+      </div>
+    </div>
+
+
+    <div class="container main-images" fxLayout fxLayoutAlign="center" fxLayoutGap="20px">
+      <mat-card fxFlex>
+        <img class="img-responsive" src="http://via.placeholder.com/500x600" alt="" style="width: 100%; height: auto">
+      </mat-card>
+      <mat-card fxFlex>
+        <img class="img-responsive" src="http://via.placeholder.com/500x600" alt="" style="width: 100%; height: auto">
+      </mat-card>
+    </div>
+  </div>
+</div>
 
 
 <input type="submit" value="click me" id="btn">
+
