@@ -21,5 +21,22 @@
 </div>
 
 
+<ngx-carousel
+  [inputs]="carouselBanner"
+  [moveToSlide]="1"
+  (onMove)="onmoveFn($event)">
+
+  <ngx-item NgxCarouselItem class="bannerStyle">
+    <img src="../../assets/images/Logo.png"/>
+  </ngx-item>
+
+  <ngx-item NgxCarouselItem class="bannerStyle">
+    <img src="../../assets/images/B1.jpg"/>
+  </ngx-item>
+
+  <button NgxCarouselPrev class='leftRs'>&lt;</button>
+  <button NgxCarouselNext class='rightRs'>&gt;</button>
+</ngx-carousel>
+
 <input type="submit" value="click me" id="btn">
 
