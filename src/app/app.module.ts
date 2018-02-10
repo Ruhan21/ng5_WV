@@ -9,13 +9,15 @@ import { NgxCarouselModule } from 'ngx-carousel';
 import { AppComponent } from './app.component';
 import { IntroComponent } from './intro/intro.component';
 import { HeaderComponent } from './header/header.component';
+import { VenueComponent } from './venue/venue.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     IntroComponent,
-    HeaderComponent
+    HeaderComponent,
+    VenueComponent
   ],
   imports: [
     BrowserModule,
