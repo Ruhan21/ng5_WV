@@ -1,47 +1,113 @@
 
-<ngx-carousel
-  [inputs]="carouselBanner"
-  [moveToSlide]="1"
-  (onMove)="onmoveFn($event)">
-
-  <ngx-item NgxCarouselItem class="bannerStyle">
-    <div class="bannerStyle" style="background-image: url(../../assets/images/B1.jpg);background-size:cover;">
-      <!--<h1>1</h1>-->
-      <img src="../../assets/images/Logo.png"/>
-    </div>
-  </ngx-item>
+<!--<ngx-carousel-->
+  <!--[inputs]="carouselBanner"-->
+  <!--[moveToSlide]="1"-->
+  <!--(onMove)="onmoveFn($event)">-->
 
   <!--<ngx-item NgxCarouselItem class="bannerStyle">-->
-  <!--<img src="../../assets/images/B1.jpg"/>-->
+    <!--<div class="bannerStyle" style="background-image: url(../../assets/images/B1.jpg);background-size:cover;">-->
+      <!--&lt;!&ndash;<h1>1</h1>&ndash;&gt;-->
+      <!--<img src="../../assets/images/Logo.png"/>-->
+    <!--</div>-->
   <!--</ngx-item>-->
 
-  <button NgxCarouselPrev class='leftRs'>&lt;</button>
-  <button NgxCarouselNext class='rightRs'>&gt;</button>
-</ngx-carousel>
+  <!--&lt;!&ndash;<ngx-item NgxCarouselItem class="bannerStyle">&ndash;&gt;-->
+  <!--&lt;!&ndash;<img src="../../assets/images/B1.jpg"/>&ndash;&gt;-->
+  <!--&lt;!&ndash;</ngx-item>&ndash;&gt;-->
 
-<div class="container" fxLayout>
+  <!--<button NgxCarouselPrev class='leftRs'>&lt;</button>-->
+  <!--<button NgxCarouselNext class='rightRs'>&gt;</button>-->
+<!--</ngx-carousel>-->
 
-  <div class="main-images" fxFlex="60%" fxFlexOffset="20%">
-    <!--<div style="background-image: url(../../assets/images/B1.jpg); background-size:cover; border:ridge; ">-->
-      <!--<div style="min-height: 250px;">-->
-        <!--<img src="../../assets/images/Logo.png"/>-->
-      <!--</div>-->
-    <!--</div>-->
+  <div class="container" fxLayout="column" fxLayoutAlign="center">
+    <div fxFlex style="background-image: url(../../assets/images/intro/B1.jpg); background-size:cover; border:ridge; background-attachment: fixed;">
+      <div style="min-height: 450px;" [ngStyle.lt-sm]="{'min-height':'250px'}">
+        <div class="container" fxLayout fxLayoutAlign="left" fxLayoutAlign.lt-sm="center">
+          <img [ngStyle.lt-sm]="{'transform': 'scale(0.9)'}" fxFlexFill.lt-sm src="../../assets/images/intro/Logo.png"/>
+        </div>
 
-
-    <div class="container main-images" fxLayout fxLayoutAlign="center" fxLayoutGap="20px">
-      <mat-card fxFlex>
-        <img class="img-responsive" src="http://via.placeholder.com/500x600" alt="" style="width: 100%; height: auto">
-      </mat-card>
-      <mat-card fxFlex>
-        <img class="img-responsive" src="http://via.placeholder.com/500x600" alt="" style="width: 100%; height: auto">
-      </mat-card>
+      </div>
     </div>
   </div>
-</div>
+
+  <div class="container main-images" fxLayout fxLayoutAlign="center">
+    <mat-card fxFlex="60%" fxFlex.lt-sm="100%">
+      <div style="background-image: url(../../assets/images/backgrounds/bg2.jpg); background-size:cover; min-height: 450px; position: relative">
+
+        <div class="container" fxLayout fxLayoutAlign="left" fxLayoutGap="20px">
+          <img class="avatar" src="http://via.placeholder.com/150x150" alt="">
+          <h1>Dear (name)</h1>
+        </div>
+
+        <div class="container" fxLayout>
+          <div  fxFlex="60%" fxFlex.lt-sm="100%">
+            <div fxLayout="column">
+              <h4>
+                Nullam viverra eros vel diam egestas vulputate. Donec mollis pulvinar
+              </h4>
+
+              <p>
+                ornare. Vestibulum cursus rutrum
+                dolor.Donec maximus elit fringilla risus tincidunt,
+                ornare. Vestibulum cursus rutrum
+                dolor.Donec maximus elit fringilla risus tincidunt,
+                ornare. Vestibulum cursus rutrum
+                dolor.Donec maximus elit fringilla risus tincidunt,
+              </p>
+
+              <p>
+                ornare. Vestibulum cursus rutrum
+                dolor.Donec maximus elit fringilla risus tincidunt,
+                ornare. Vestibulum cursus rutrum
+                dolor.Donec maximus elit fringilla risus tincidunt,
+                ornare.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div [ngStyle.lt-sm]="{'position': 'relative'}" style="position: absolute; bottom: 0px;">
+          <mat-slide-toggle>Slide me!</mat-slide-toggle>
+        </div>
+
+      </div>
+    </mat-card>
+  </div>
+
+  <div class="container main-images" fxLayout fxLayoutAlign="center">
+    <div fxFlex="90%" fxFlex.lt-sm="100%">
+      <div class="container" fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="30px">
+        <mat-card fxFlex>
+          <div class="card">
+            <img class="card-image" src="../../assets/images/intro/c1.jpg" alt="">
+            <div class="container" fxLayout fxLayoutAlign="center">
+              <button fxFlex mat-raised-button color="accent">Venue</button>
+            </div>
+          </div>
+        </mat-card>
+        <mat-card fxFlex>
+          <div class="card">
+            <img class="card-image" src="../../assets/images/intro/c5.jpg" alt="">
+            <div class="container" fxLayout fxLayoutAlign="center">
+              <button fxFlex mat-raised-button color="accent">Guests</button>
+            </div>
+          </div>
+        </mat-card>
+        <mat-card fxFlex>
+          <div class="card">
+            <img class="card-image" src="../../assets/images/intro/c4.jpg" alt="">
+            <div class="container" fxLayout fxLayoutAlign="center">
+              <button fxFlex mat-raised-button color="accent">Messages</button>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
 
 
 
 
-<input type="submit" value="click me" id="btn">
+  <input type="submit" value="click me" id="btn">
+
 

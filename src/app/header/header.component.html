@@ -1,19 +1,12 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
 
-      <div fxFlex="60%" fxFlexOffset="20%">
-        <div class="container" fxLayout fxLayoutAlign="left" fxLayoutGap="30px">
+
+      <div class="container" fxLayout  fxLayoutAlign="left" fxLayoutGap="30px" fxLayoutGap.lt-sm="10px">
           <button (click)="navigateIntro()" mat-raised-button color="accent">Home</button>
           <button (click)="navigateIntro()" mat-raised-button color="accent">About</button>
           <button (click)="navigateIntro()" mat-raised-button color="accent">Venue</button>
-          <button (click)="navigateIntro()" mat-raised-button color="accent">Guests</button>
-        </div>
+          <button fxHide.lt-sm (click)="navigateIntro()" mat-raised-button color="accent">Guests</button>
       </div>
-      <div fxFlex="20%">
-        <div class="container" fxLayout fxLayoutAlign="center">
-          <mat-icon class="example-icon">verified_user</mat-icon>
-        </div>
-      </div>
-
   </mat-toolbar-row>
 </mat-toolbar>
