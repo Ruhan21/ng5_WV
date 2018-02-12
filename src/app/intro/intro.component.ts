@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import { ActivatedRoute } from "@angular/router"; //This is when you send through variables through url
+import {DataService} from '../data.service'
 
 @Component({
   selector: 'app-intro',
@@ -8,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IntroComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _data: DataService) { }
+
+  curPage = 'home';
 
   ngOnInit() {
     const btn = document.getElementById('btn');
+
+    this._data.changeCurPage(this.curPage);
 
     btn.addEventListener('click', function () {
       alert('hello');

@@ -3,10 +3,10 @@
 
 
       <div class="container" fxLayout  fxLayoutAlign="left" fxLayoutGap="30px" fxLayoutGap.lt-sm="10px">
-          <button (click)="navigateTo('')" mat-raised-button color="accent">Home</button>
-          <button (click)="navigateTo()" mat-raised-button color="accent">About</button>
-          <button (click)="navigateTo('venue')" mat-raised-button color="accent">Venue</button>
-          <button fxHide.lt-sm (click)="navigateTo()" mat-raised-button color="accent">Guests</button>
+          <button [fxHide.lt-sm]="isVisibleOnMobile(navBtns[0])" (click)="navigateTo('')" mat-raised-button color="accent">{{navBtns[0]}}</button>
+          <button [fxHide.lt-sm]="isVisibleOnMobile(navBtns[1])" (click)="navigateTo(navBtns[1])" mat-raised-button color="accent">{{navBtns[1]}}</button>
+          <button (click)="navigateTo(navBtns[2])" mat-raised-button color="accent">{{navBtns[2]}}</button>
+          <button (click)="navigateTo(navBtns[3])" mat-raised-button color="accent">{{navBtns[3]}}</button>
       </div>
   </mat-toolbar-row>
 </mat-toolbar>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxCarousel, NgxCarouselStore  } from 'ngx-carousel';
+import {DataService} from '../data.service'
 
 @Component({
   selector: 'app-venue',
@@ -11,9 +12,13 @@ export class VenueComponent implements OnInit {
   public carouselTileItems: Array<any>;
   public carouselTile: NgxCarousel;
 
-  constructor() { }
+  constructor(private _data: DataService) { }
+
+  currPage = 'Venue';
 
   ngOnInit() {
+
+    this._data.changeCurPage(this.currPage);
 
     this.carouselTileItems = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
