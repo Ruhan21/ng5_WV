@@ -18,11 +18,11 @@ export class VenueComponent implements OnInit {
     this.carouselTileItems = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
     this.carouselTile = {
-      grid: {xs: 2, sm: 3, md: 3, lg: 7, all: 0},
-      slide: 4,
+      grid: {xs: 2, sm: 3, md: 3, lg: 4, all: 0},
+      slide: 2,
       speed: 1000,
       loop: true,
-      interval: 2000,
+      interval: 6000,
       animation: 'lazy',
       point: {
         visible: true,
@@ -58,13 +58,6 @@ export class VenueComponent implements OnInit {
   }
 
   public carouselTileLoad(evt: any) {
-
     const len = this.carouselTileItems.length;
-    if (len <= 30) {
-      for (let i = len; i < len + 10; i++) {
-        this.carouselTileItems.push(i);
-      }
-    }
-
   }
 }

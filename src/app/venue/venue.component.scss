@@ -5,6 +5,15 @@ h1{
   line-height: 200px;
   border-radius: 90%;
 }
+
+.venue-intro {
+  min-height: 350px;
+  background-image: url(http://via.placeholder.com/350x700);
+  background-size:cover;
+  border:ridge;
+  margin-bottom: 15px;
+}
+
 .leftRs {
   position: absolute;
   margin: auto;
