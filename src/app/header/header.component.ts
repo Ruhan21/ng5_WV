@@ -26,11 +26,8 @@ export class HeaderComponent implements OnInit {
   isVisibleOnMobile(page) {
     this._data.curPage.subscribe(res => this.curPage = res);
 
-    if(page.toLowerCase() === this.curPage.toLowerCase()){
-      return true
-    } else {
-      return false
-    }
+    return page.toLowerCase() === this.curPage.toLowerCase();
+
   }
 
 }
