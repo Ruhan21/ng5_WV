@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { IntroComponent } from './intro/intro.component';
 import { HeaderComponent } from './header/header.component';
 import { VenueComponent } from './venue/venue.component';
+import { GuestsComponent } from './guests/guests.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { VenueComponent } from './venue/venue.component';
     AppComponent,
     IntroComponent,
     HeaderComponent,
-    VenueComponent
+    VenueComponent,
+    GuestsComponent
   ],
   imports: [
     BrowserModule,
