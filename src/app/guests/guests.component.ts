@@ -12,6 +12,7 @@ export class GuestsComponent implements OnInit {
   currPage = 'Guests';
 
   tables = [1,2,3,4,5,6,7,8,9,10];
+  guestList = "";
 
   constructor(private _data: DataService) { }
 
@@ -19,4 +20,7 @@ export class GuestsComponent implements OnInit {
     this._data.changeCurPage(this.currPage);
   }
 
+  selectTable(item) {
+    this.guestList = item
+  }
 }
