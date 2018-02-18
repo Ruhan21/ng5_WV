@@ -1,5 +1,5 @@
 <div class="container margin-top margin-bottom" fxLayout="column" fxLayoutGap="20px">
-  <div class="container" fxLayout fxLayoutAlign="center" fxLayoutGap="20px">
+  <div class="container" fxLayout fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
     <mat-card fxFlex="26%">
       <div class="container" fxLayout>
         <div fxFlex>
@@ -45,7 +45,7 @@
       </div>
     </mat-card>
   </div>
-  <div class="container" fxLayoutGap="20px" fxLayout fxLayoutAlign="center">
+  <div class="container" fxLayoutGap="20px" fxLayout fxLayout.lt-md="column" fxLayoutAlign="center">
     <mat-card fxFlex="60%">
       <div class="container" fxLayout>
         <div fxFlex>
@@ -75,7 +75,7 @@
     </mat-card>
   </div>
 
-  <div class="container" fxLayoutGap="20px" fxLayout fxLayoutAlign="center">
+  <div class="container" fxLayoutGap="20px" fxLayout fxLayout.lt-md="column" fxLayoutAlign="center">
     <mat-card fxFlex="20%">
       <div fxFlex>
         <div fxLayoutAlign="center">Guests attendance</div>
@@ -91,7 +91,7 @@
 
       <mat-card fxFlex>
         <div class="container" fxLayout>
-          <div fxFlex>
+          <div style="overflow-x: scroll" fxFlex>
             <div fxLayoutAlign="center">Forecast</div>
 
             <canvas baseChart width="400" height="400"
