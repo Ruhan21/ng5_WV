@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { ChartsModule } from 'ng2-charts';
 import {DataService} from './data.service'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -32,7 +33,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    NgxCarouselModule
+    NgxCarouselModule,
+    ChartsModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

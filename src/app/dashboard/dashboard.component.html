@@ -1,5 +1,134 @@
-<div class="container margin-top" fxLayout fxLayoutAlign="center">
-  <mat-card fxFlex="90%">
-    Dashboard
-  </mat-card>
+<div class="container margin-top margin-bottom" fxLayout="column" fxLayoutGap="20px">
+  <div class="container" fxLayout fxLayoutAlign="center" fxLayoutGap="20px">
+    <mat-card fxFlex="26%">
+      <div class="container" fxLayout>
+        <div fxFlex>
+          <div fxLayoutAlign="center">Income</div>
+          <canvas baseChart
+                  [data]="doughnutChartData"
+                  [labels]="doughnutChartLabels"
+                  [chartType]="doughnutChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"
+                  [legend]="false"></canvas>
+        </div>
+      </div>
+    </mat-card>
+
+    <mat-card fxFlex="26%">
+      <div class="container" fxLayout>
+        <div fxFlex>
+          <div fxLayoutAlign="center">Expenses</div>
+          <canvas baseChart
+                  [data]="doughnutChartData"
+                  [labels]="doughnutChartLabels"
+                  [chartType]="doughnutChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"
+                  [legend]="false"></canvas>
+        </div>
+      </div>
+    </mat-card>
+
+    <mat-card fxFlex="26%">
+      <div class="container" fxLayout>
+        <div fxFlex>
+          <div fxLayoutAlign="center">Guests</div>
+          <canvas baseChart
+                  [data]="doughnutChartData"
+                  [labels]="doughnutChartLabels"
+                  [chartType]="doughnutChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"
+                  [legend]="false"></canvas>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <div class="container" fxLayoutGap="20px" fxLayout fxLayoutAlign="center">
+    <mat-card fxFlex="60%">
+      <div class="container" fxLayout>
+        <div fxFlex>
+          <div fxLayoutAlign="center">Total Expenses</div>
+          <canvas baseChart
+                  [data]="pieChartData"
+                  [labels]="pieChartLabels"
+                  [options]="pieChartOptions"
+                  [chartType]="pieChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+    </mat-card>
+
+    <mat-card fxFlex="20%">
+      <div class="container" fxLayout>
+        <div fxFlex>
+          <div fxLayoutAlign="center">Selected Items Paid</div>
+          <mat-selection-list #shoes>
+            <mat-list-option *ngFor="let shoe of typesOfShoes">
+              {{shoe}}
+            </mat-list-option>
+          </mat-selection-list>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+  <div class="container" fxLayoutGap="20px" fxLayout fxLayoutAlign="center">
+    <mat-card fxFlex="20%">
+      <div fxFlex>
+        <div fxLayoutAlign="center">Guests attendance</div>
+        <mat-list>
+          <mat-list-item> Pepper </mat-list-item>
+          <mat-list-item> Salt</mat-list-item>
+          <mat-list-item> Paprika</mat-list-item>
+        </mat-list>
+      </div>
+    </mat-card>
+
+    <div fxFlex="60%" class="container" fxLayout="column" fxLayoutGap="20px">
+
+      <mat-card fxFlex>
+        <div class="container" fxLayout>
+          <div fxFlex>
+            <div fxLayoutAlign="center">Forecast</div>
+
+            <canvas baseChart width="400" height="400"
+                    [datasets]="lineChartData"
+                    [labels]="lineChartLabels"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+      </mat-card>
+
+      <mat-card fxFlex>
+        <div class="container" fxLayout>
+          <div fxFlex>
+            <div fxLayoutAlign="center">Guest Private Messages</div>
+            <mat-accordion>
+              <mat-expansion-panel (opened)="panelOpenState = true"
+                                   (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Self aware panel
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p>I'm visible because I am open</p>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+
+  </div>
 </div>
