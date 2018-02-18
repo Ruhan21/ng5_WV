@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 import {DataService} from '../data.service'
 
 @Component({
@@ -12,7 +11,7 @@ export class HeaderComponent implements OnInit {
   navBtns = [];
   curPage: string;
 
-  constructor(private router: Router, private _data: DataService) {
+  constructor(private _data: DataService) {
   }
 
   ngOnInit() {
@@ -20,7 +19,7 @@ export class HeaderComponent implements OnInit {
   }
 
   navigateTo(page) {
-    this.router.navigate([page.toLowerCase()]);
+    this._data.navigateTo(page)
   }
 
   isVisibleOnMobile(page) {

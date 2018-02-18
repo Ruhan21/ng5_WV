@@ -15,6 +15,7 @@ import { VenueComponent } from './venue/venue.component';
 import { GuestsComponent } from './guests/guests.component';
 import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { IncomeComponent } from './income/income.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     VenueComponent,
     GuestsComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    IncomeComponent
   ],
   imports: [
     BrowserModule,

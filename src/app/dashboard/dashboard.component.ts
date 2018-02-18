@@ -17,6 +17,10 @@ export class DashboardComponent implements OnInit {
     this._data.changeCurPage(this.currPage);
   }
 
+  navigateTo(page){
+   this._data.navigateTo(page)
+  }
+
   // Doughnut
   public doughnutChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
   public doughnutChartData:number[] = [350, 450, 100];

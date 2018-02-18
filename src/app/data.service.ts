@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
+import {Router} from '@angular/router';
 
 @Injectable()
 export class DataService {
@@ -10,11 +11,15 @@ export class DataService {
   navBtns = this.navigationButtons.asObservable();
   curPage = this.currentPage.asObservable();
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   changeCurPage(page) {
     console.log(page);
     this.currentPage.next(page)
+  }
+
+  navigateTo(page) {
+    this.router.navigate([page.toLowerCase()]);
   }
 
 }

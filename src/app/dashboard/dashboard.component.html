@@ -3,7 +3,7 @@
     <mat-card fxFlex="26%">
       <div class="container" fxLayout>
         <div fxFlex>
-          <div fxLayoutAlign="center">Income</div>
+          <div fxLayoutAlign="center" (click)="navigateTo('income')">Income</div>
           <canvas baseChart
                   [data]="doughnutChartData"
                   [labels]="doughnutChartLabels"
