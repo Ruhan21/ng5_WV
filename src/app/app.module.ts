@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { VenueComponent } from './venue/venue.component';
 import { GuestsComponent } from './guests/guests.component';
 import { MessagesComponent } from './messages/messages.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { MessagesComponent } from './messages/messages.component';
     HeaderComponent,
     VenueComponent,
     GuestsComponent,
-    MessagesComponent
+    MessagesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

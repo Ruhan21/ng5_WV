@@ -4,6 +4,7 @@ import { IntroComponent } from './intro/intro.component';
 import { VenueComponent } from './venue/venue.component';
 import { GuestsComponent } from './guests/guests.component';
 import { MessagesComponent } from './messages/messages.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'messages',
     component: MessagesComponent
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent
   }
 ];
 
