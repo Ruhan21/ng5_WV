@@ -1,22 +1,22 @@
 <div class="container margin-top" fxLayout fxLayoutAlign="center">
-  <div fxFlex="80%" fxFlex.lt-sm="100%">
-    <div fxLayout fxLayoutGap="30px" fxLayout.lt-sm="column">
+  <div fxFlex fxFlex.gt-sm="90%">
+    <div fxLayout fxLayoutGap="30px" fxLayout.lt-md="column">
       <mat-card fxFlex="70%" fxFlex.lt-sm>
         <p>tables</p>
-        <div class="container" fxLayoutAlign="center" fxLayout fxLayoutWrap="wrap">
-
-
-            <div *ngFor="let item of tables" fxFlex="30%" >
-              <div (click)="selectTable(item)" class="table"></div>
+        <div class="container tables" fxLayoutAlign="center" fxLayout fxLayoutWrap="wrap">
+          <div *ngFor="let item of tables" fxFlex="30%" fxFlex.lt-sm="50%">
+            <div (click)="selectTable(item)" class="table">
+              {{item}}
             </div>
-
-
+          </div>
+        </div>
+      </mat-card>
+      <mat-card fxFlex fxFlex.gt-sm="30%">
+        <p>Guest list</p>
+        <div *ngFor="let item of guestList">
+          {{item}}
         </div>
 
-      </mat-card>
-      <mat-card fxFlex="30%" fxFlex.lt-sm>
-        <p>Guest list</p>
-        {{guestList}}
       </mat-card>
     </div>
   </div>

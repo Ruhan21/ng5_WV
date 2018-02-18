@@ -12,7 +12,7 @@ export class GuestsComponent implements OnInit {
   currPage = 'Guests';
 
   tables = [1,2,3,4,5,6,7,8,9,10];
-  guestList = "";
+  guestList = [];
 
   constructor(private _data: DataService) { }
 
@@ -21,6 +21,7 @@ export class GuestsComponent implements OnInit {
   }
 
   selectTable(item) {
-    this.guestList = item
+    this.guestList = [];
+    this.guestList.push(item);
   }
 }
