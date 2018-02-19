@@ -17,6 +17,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { IncomeComponent } from './income/income.component';
 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { IncomeComponent } from './income/income.component';
     MaterialModule,
     FlexLayoutModule,
     NgxCarouselModule,
-    ChartsModule
+    ChartsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

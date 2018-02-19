@@ -1,3 +1,26 @@
-<p>
-  income works!
-</p>
+<div class="container margin-top" fxLayout fxLayoutAlign="center">
+  <mat-card fxFlex fxFlex.gt-sm="80%">
+    <form id="incomeForm">
+      <div class="container" fxLayout="column" fxLayoutGap="10px">
+
+        <pre>{{ incomeModel | json }}</pre>
+
+        <mat-form-field fxFlex>
+          <input required name="amount" [(ngModel)]="incomeModel.amount" type="number" matInput placeholder="Amount" value="">
+        </mat-form-field>
+
+
+        <mat-form-field fxFlex>
+          <input required name="description" [(ngModel)]="incomeModel.description" matInput placeholder="Description" value="">
+        </mat-form-field>
+
+        <mat-select required name="type" [(ngModel)]="incomeModel.type" placeholder="Select Type">
+          <mat-option *ngFor="let type of types" [value]="type">
+            {{ type }}
+          </mat-option>
+        </mat-select>
+
+      </div>
+    </form>
+  </mat-card>
+</div>
