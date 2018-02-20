@@ -1,14 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-income',
@@ -17,7 +8,19 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class IncomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb: FormBuilder) {
+
+    this.rForm = fb.group({
+      'name':[null, Validators.required],
+      'description':[null, Validators.compose([Validators.required, Validators.minLength(30),Validators.maxLength(100)]) ],
+      'validate': ''
+    })
+  }
+
+  addPost(post){
+    this.description = post.description;
+    this.name = post.name;
+  }
 
   types = ['Monthly','Once off'];
 
@@ -26,6 +29,9 @@ export class IncomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  matcher = new MyErrorStateMatcher();
+  rForm: FormGroup;
+  post:any;
+  description:string = '';
+  name:string = ''
 
 }
