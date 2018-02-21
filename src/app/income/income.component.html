@@ -1,46 +1,52 @@
 <div class="container margin-top" fxLayout fxLayoutAlign="center">
   <mat-card fxFlex fxFlex.gt-sm="80%">
-    <form id="incomeForm">
+    <form #f="ngForm">
       <div class="container" fxLayout="column" fxLayoutGap="10px">
 
-        <pre>{{ incomeModel | json }}</pre>
+        <mat-form-field fxFlex>
+          <input ngModel required name="amount" #amount="ngModel" [(ngModel)]="incomeModel.amount" type="number"
+                 matInput placeholder="Amount" value="">
+          <mat-error *ngIf="!amount.valid">
+            please enter an amount
+          </mat-error>
+        </mat-form-field>
 
-        <!--<mat-form-field fxFlex>-->
-          <!--<input required name="amount" [(ngModel)]="incomeModel.amount" type="number" matInput placeholder="Amount" value="">-->
-        <!--</mat-form-field>-->
 
+        <mat-form-field fxFlex>
+          <input ngModel required name="description" #description="ngModel" [(ngModel)]="incomeModel.description"
+                 matInput placeholder="Description" value="">
+          <mat-error *ngIf="!description.valid">
+            please enter a description
+          </mat-error>
+        </mat-form-field>
 
-        <!--<mat-form-field fxFlex>-->
-          <!--<input required name="description" [(ngModel)]="incomeModel.description" matInput placeholder="Description" value="">-->
-        <!--</mat-form-field>-->
-
-        <!--<mat-select required name="type" [(ngModel)]="incomeModel.type" placeholder="Select Type">-->
-          <!--<mat-option *ngFor="let type of types" [value]="type">-->
-            <!--{{ type }}-->
-          <!--</mat-option>-->
-        <!--</mat-select>-->
-
-        <div>
-          <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
-            <mat-form-field fxFlex>
-              <input matInput type="text" formControlName="name">
-              <div *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched">
-                this is required
-              </div>
-            </mat-form-field>
-
-            <mat-form-field fxFlex>
-              <input matInput type="text" formControlName="description">
-            </mat-form-field>
-
-            <input type="checkbox" name="validate" formControlName="validate" value="1"> On
-
-            <input type="submit" value="Submit Form" [disabled]="!rForm.valid">
-          </form>
-        </div>
+        <mat-form-field fxFlex>
+          <mat-select required name="incomeType" #incomeType="ngModel" [(ngModel)]="incomeModel.type"
+                      placeholder="Select Type">
+            <mat-option *ngFor="let type of types" [value]="type">
+              {{ type }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="!incomeType.valid && incomeType.touched">
+            please select an option
+          </mat-error>
+        </mat-form-field>
 
 
       </div>
     </form>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <p>First name value: {{ amount.value }}</p>
+    <p>First name valid: {{ description.valid }}</p>
+    <p>Form value: {{ f.value | json }}</p>
+    <p>Form valid: {{ f.valid }}</p>
+
+    <pre>{{incomeModel | json}}</pre>
+
   </mat-card>
 </div>

@@ -8,18 +8,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class IncomeComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) {
-
-    this.rForm = fb.group({
-      'name':[null, Validators.required],
-      'description':[null, Validators.compose([Validators.required, Validators.minLength(30),Validators.maxLength(100)]) ],
-      'validate': ''
-    })
-  }
-
-  addPost(post){
-    this.description = post.description;
-    this.name = post.name;
+  constructor() {
   }
 
   types = ['Monthly','Once off'];
@@ -28,10 +17,5 @@ export class IncomeComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  rForm: FormGroup;
-  post:any;
-  description:string = '';
-  name:string = ''
 
 }
