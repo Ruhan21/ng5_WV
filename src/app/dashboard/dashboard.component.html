@@ -1,13 +1,13 @@
-<div class="container margin-top margin-bottom" fxLayout="column" fxLayoutGap="20px">
+<div *ngIf="doneLoading" class="container margin-top margin-bottom" fxLayout="column" fxLayoutGap="20px">
   <div class="container" fxLayout fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
     <mat-card fxFlex="26%">
       <div class="container" fxLayout>
         <div fxFlex>
-          <div fxLayoutAlign="center" (click)="navigateTo('income')">Income</div>
+          <div fxLayoutAlign="center" (click)="navigateTo('income')">Income R{{totalIncome}}</div>
           <canvas baseChart
-                  [data]="doughnutChartData"
-                  [labels]="doughnutChartLabels"
-                  [chartType]="doughnutChartType"
+                  [data]="doughnutIncomeData"
+                  [labels]="doughnutIncomeLabels"
+                  [chartType]="doughnutIncomeType"
                   (chartHover)="chartHovered($event)"
                   (chartClick)="chartClicked($event)"
                   [legend]="false"></canvas>
@@ -18,11 +18,11 @@
     <mat-card fxFlex="26%">
       <div class="container" fxLayout>
         <div fxFlex>
-          <div fxLayoutAlign="center">Expenses</div>
+          <div fxLayoutAlign="center">Expenses R{{totalExpense}}</div>
           <canvas baseChart
-                  [data]="doughnutChartData"
-                  [labels]="doughnutChartLabels"
-                  [chartType]="doughnutChartType"
+                  [data]="doughnutExpenseData"
+                  [labels]="doughnutExpenseLabels"
+                  [chartType]="doughnutExpenseType"
                   (chartHover)="chartHovered($event)"
                   (chartClick)="chartClicked($event)"
                   [legend]="false"></canvas>
@@ -33,11 +33,11 @@
     <mat-card fxFlex="26%">
       <div class="container" fxLayout>
         <div fxFlex>
-          <div fxLayoutAlign="center">Guests</div>
+          <div fxLayoutAlign="center">Guests {{totalGuests}}%</div>
           <canvas baseChart
-                  [data]="doughnutChartData"
-                  [labels]="doughnutChartLabels"
-                  [chartType]="doughnutChartType"
+                  [data]="doughnutGuestData"
+                  [labels]="doughnutGuestLabels"
+                  [chartType]="doughnutGuestType"
                   (chartHover)="chartHovered($event)"
                   (chartClick)="chartClicked($event)"
                   [legend]="false"></canvas>
@@ -65,9 +65,9 @@
       <div class="container" fxLayout>
         <div fxFlex>
           <div fxLayoutAlign="center">Selected Items Paid</div>
-          <mat-selection-list #shoes>
-            <mat-list-option *ngFor="let shoe of typesOfShoes">
-              {{shoe}}
+          <mat-selection-list #list>
+            <mat-list-option *ngFor="let item of selectedExpenses" (click)="paidItemChange(item)" [selected]="item.paid" [value]="item">
+              {{item.description}}
             </mat-list-option>
           </mat-selection-list>
         </div>
@@ -80,9 +80,7 @@
       <div fxFlex>
         <div fxLayoutAlign="center">Guests attendance</div>
         <mat-list>
-          <mat-list-item> Pepper </mat-list-item>
-          <mat-list-item> Salt</mat-list-item>
-          <mat-list-item> Paprika</mat-list-item>
+          <mat-list-item *ngFor="let item of guests"> {{item.name}} {{item.surname}} </mat-list-item>
         </mat-list>
       </div>
     </mat-card>
