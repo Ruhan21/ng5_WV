@@ -1,24 +1,30 @@
 <div class="message-intro container" fxLayout>
-  <mat-card class="message-from" fxFlex fxFlex.gt-sm="40%" fxFlexOffset.gt-sm="10%" >
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Hi (name)</mat-card-title>
-      <mat-card-subtitle>Leave us a message</mat-card-subtitle>
-      <mat-icon class="message-icon">verified_user</mat-icon>
-    </mat-card-header>
-    <mat-divider></mat-divider>
-    <mat-card-content>
-      <mat-form-field fxFlex style="margin-top: 15px">
-        <textarea matInput placeholder="My Message"></textarea>
-      </mat-form-field>
-    </mat-card-content>
+  <mat-card class="message-from" fxFlex fxFlex.gt-sm="40%" fxFlexOffset.gt-sm="10%">
+    <form (ngSubmit)="addPost(); f.resetForm()" #f="ngForm">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Hi (name)</mat-card-title>
+        <mat-card-subtitle>Leave us a message</mat-card-subtitle>
+        <mat-icon class="message-icon">verified_user</mat-icon>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
 
-    <div class="move-bottom">
-      <mat-card-actions>
-        <button mat-button>POST</button>
-      </mat-card-actions>
-    </div>
+        <mat-form-field fxFlex style="margin-top: 15px">
+          <textarea required name="message" #message="ngModel" [(ngModel)]="messageModel" matInput
+                    placeholder="My Message"></textarea>
+          <mat-error *ngIf="!message.valid">
+            please enter a message
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
 
+      <div class="move-bottom">
+        <mat-card-actions>
+          <button [disabled]="!f.valid" mat-raised-button color="accent">Post Message</button>
+        </mat-card-actions>
+      </div>
+    </form>
   </mat-card>
 </div>
 
@@ -26,21 +32,82 @@
   <h1>Message Center</h1>
 </div>
 
-<div class="container" fxLayout fxLayoutAlign="center">
-  <div fxFlex="80%" fxFlex.lt-sm>
-    <mat-grid-list gutterSize="10" cols="2" cols.gt-sm="4" rowHeight="100px">
-      <mat-grid-tile
-        *ngFor="let tile of tiles"
-        [colspan]="tile.cols"
-        [rowspan]="tile.rows">
-        <div class="custom-card">
-          {{tile.text}}
+<div class="container" fxLayout fxLayoutAlign="center" fxLayoutGap="15px">
+
+  <div fxFlex="30">
+    <div class="container" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="15px">
+
+      <div *ngFor="let tile of tiles">
+        <div class="container" fxLayout>
+          <mat-card fxFlex>
+            <div class="container" fxLayout fxLayoutAlign="center">
+              <div fxFlex="90">
+
+                <div style="padding: 15px 0 15px 0; display: flex; align-items: center" class="container" fxLayout>
+                  <div mat-card-avatar class="user-image"></div>
+                  <div style="padding-left: 15px">Message from:</div>
+                </div>
+
+                {{tile.text}}
+              </div>
+            </div>
+          </mat-card>
         </div>
+      </div>
 
 
-      </mat-grid-tile>
-    </mat-grid-list>
+    </div>
   </div>
+  <div fxFlex="30">
+    <div class="container" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="15px">
+
+      <div *ngFor="let tile of tiles1">
+        <div class="container" fxLayout>
+          <mat-card fxFlex>
+            <div class="container" fxLayout fxLayoutAlign="center">
+              <div fxFlex="90">
+
+                <div style="padding: 15px 0 15px 0; display: flex; align-items: center" class="container" fxLayout>
+                  <div mat-card-avatar class="user-image"></div>
+                  <div style="padding-left: 15px">Message from:</div>
+                </div>
+
+                {{tile.text}}
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <div fxFlex="30">
+    <div class="container" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="15px">
+
+      <div *ngFor="let tile of tiles2">
+        <div class="container" fxLayout>
+          <mat-card fxFlex>
+            <div class="container" fxLayout fxLayoutAlign="center">
+              <div fxFlex="90">
+
+                <div style="padding: 15px 0 15px 0; display: flex; align-items: center" class="container" fxLayout>
+                  <div mat-card-avatar class="user-image"></div>
+                  <div style="padding-left: 15px">Message from:</div>
+                </div>
+
+                {{tile.text}}
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
 </div>
 
 

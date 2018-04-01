@@ -154,13 +154,7 @@ export class DashboardComponent implements OnInit {
     let expensesCopy = [...this.expenses];
     let teller = -1;
 
-    expensesCopy.sort(function compare(a,b) {
-      if (a.type < b.type)
-        return -1;
-      if (a.type > b.type)
-        return 1;
-      return 0;
-    });
+    expensesCopy = this._data.OrderArray(expensesCopy,'type');
 
     if(expensesCopy.length > 0){
 

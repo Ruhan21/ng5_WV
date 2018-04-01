@@ -11,17 +11,51 @@ export class GuestsComponent implements OnInit {
 
   currPage = 'Guests';
 
-  tables = [1,2,3,4,5,6,7,8,9,10];
+  tables = [];
   guestList = [];
+  currTable: number;
 
-  constructor(private _data: DataService) { }
+  constructor(private _data: DataService) {
+    this._data.guests.subscribe(res => this.setupGuests(res))
+  }
 
   ngOnInit() {
     this._data.changeCurPage(this.currPage);
   }
 
+  setupGuests(res){
+    let vm = this;
+    let guestCopy = [...res];
+    let teller = -1;
+    guestCopy = this._data.OrderArray(guestCopy,'table');
+
+    if(guestCopy.length > 0){
+
+      guestCopy.forEach(function (value) {
+        if(value.going){
+          if(vm.tables.length === 0){
+            vm.tables.push({table: value.table, guests:[{name: value.name + ' ' + value.surname}]});
+            teller++;
+          } else {
+            if(vm.tables[teller].table === value.table){
+              vm.tables[teller].guests.push({name: value.name + ' ' + value.surname});
+            } else {
+              vm.tables.push({table: value.table, guests:[{name: value.name + ' ' + value.surname}]});
+              teller++;
+            }
+          }
+        }
+      });
+    }
+
+    console.log(vm.tables);
+
+  }
+
   selectTable(item) {
+    this.currTable = item.table;
     this.guestList = [];
-    this.guestList.push(item);
+    this.guestList = [...item.guests];
+    console.log(this.guestList);
   }
 }

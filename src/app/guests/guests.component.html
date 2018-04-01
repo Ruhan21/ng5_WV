@@ -2,19 +2,21 @@
   <div fxFlex fxFlex.gt-sm="90%">
     <div fxLayout fxLayoutGap="30px" fxLayout.lt-md="column">
       <mat-card fxFlex="70%" fxFlex.lt-sm>
-        <p>tables</p>
+        <h3>Tables</h3>
         <div class="container tables" fxLayoutAlign="center" fxLayout fxLayoutWrap="wrap">
           <div *ngFor="let item of tables" fxFlex="30%" fxFlex.lt-sm="50%">
             <div (click)="selectTable(item)" class="table">
-              {{item}}
+              {{item.table}}
             </div>
           </div>
         </div>
       </mat-card>
       <mat-card fxFlex fxFlex.gt-sm="30%">
-        <p>Guest list</p>
+        <p>Guest list for Table: {{currTable}}</p>
         <div *ngFor="let item of guestList">
-          {{item}}
+          <ul>
+            <li>{{item.name}}</li>
+          </ul>
         </div>
 
       </mat-card>

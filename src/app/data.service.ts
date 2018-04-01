@@ -15,6 +15,7 @@ export class DataService {
   private incomeTable = new BehaviorSubject<any>([]);
   private guestTable = new BehaviorSubject<any>([]);
   private lookupTable = new BehaviorSubject<any>([]);
+  private messageCenter = new BehaviorSubject<any>([]);
 
   navBtns = this.navigationButtons.asObservable();
   curPage = this.currentPage.asObservable();
@@ -22,6 +23,7 @@ export class DataService {
   income = this.incomeTable.asObservable();
   guests = this.guestTable.asObservable();
   lookups = this.lookupTable.asObservable();
+  messages = this.messageCenter.asObservable();
 
   // firbase
 
@@ -33,6 +35,8 @@ export class DataService {
   fbGuestObservable: any;
   fbRefLookupList: AngularFireList<any>;
   fbLookupObservable: any;
+  fbRefMessageList: AngularFireList<any>;
+  fbMessageObservable: any;
 
   constructor(public af: AngularFireDatabase, private router: Router) {
     this.fbRefExpenseList = this.createList('expenseTable');
@@ -46,6 +50,9 @@ export class DataService {
 
     this.fbRefLookupList = this.createList('lookups');
     this.fbLookupObservable = this.createObs(this.fbRefLookupList,this.lookupTable);
+
+    this.fbRefMessageList = this.createList('messages');
+    this.fbMessageObservable = this.createObs(this.fbRefMessageList,this.messageCenter);
   }
 
   createList(list){
@@ -75,7 +82,6 @@ export class DataService {
 
   addToList(list,item){
     let newSongRef = this[list].push({});
-    item.key = newSongRef.key;
     newSongRef.set(item);
   }
 
@@ -83,4 +89,13 @@ export class DataService {
     this[list].remove(item.key);
   }
 
+  OrderArray(list,property){
+    return list.sort(function compare(a,b) {
+      if (a[property] < b[property])
+        return -1;
+      if (a[property] > b[property])
+        return 1;
+      return 0;
+    })
+  }
 }
