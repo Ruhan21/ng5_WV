@@ -69,6 +69,7 @@ export class DataService {
   }
 
   updateList(list,item){
+    console.log(item);
     this[list].update(item.key,item);
   }
 
@@ -76,6 +77,10 @@ export class DataService {
     let newSongRef = this[list].push({});
     item.key = newSongRef.key;
     newSongRef.set(item);
+  }
+
+  removeItemFormList(list,item){
+    this[list].remove(item.key);
   }
 
 }

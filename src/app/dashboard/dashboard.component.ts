@@ -97,14 +97,16 @@ export class DashboardComponent implements OnInit {
       });
 
       if(budget > spend){
-        dataLabel = 'remaining'
+        dataLabel = 'remaining';
+        vm.totalExpense = budget + spend;
       } else {
-        dataLabel = 'over by'
+        dataLabel = 'over by';
+        vm.totalExpense = spend;
       }
 
       budget = Math.abs(budget);
 
-      vm.totalExpense = budget + spend;
+
 
       vm.doughnutExpenseLabels = [dataLabel,'Spend'];
       vm.doughnutExpenseData = [budget,spend];
@@ -127,6 +129,68 @@ export class DashboardComponent implements OnInit {
     this.selectedExpenses = tempArray;
   }
 
+  public barChartOptions:any = {
+    scaleShowVerticalLines: false,
+    responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  };
+  public barChartLabels:string[] = [];
+  public barChartType:string = 'bar';
+  public barChartLegend:boolean = true;
+
+  public barChartData:any[] = [];
+
+  setBarChart() {
+    let vm = this;
+    let categories = [];
+    let dataSpend =[];
+    let dataBudget =[];
+    let expensesCopy = [...this.expenses];
+    let teller = -1;
+
+    expensesCopy.sort(function compare(a,b) {
+      if (a.type < b.type)
+        return -1;
+      if (a.type > b.type)
+        return 1;
+      return 0;
+    });
+
+    if(expensesCopy.length > 0){
+
+      expensesCopy.forEach(function (value) {
+        if(value.selected){
+          if(categories.length === 0){
+            categories.push(value.type);
+            dataSpend.push((value.price * value.quantity));
+            dataBudget.push(value.budget);
+            teller++;
+          } else {
+            if(categories[teller] === value.type){
+              dataSpend[teller] += (value.price * value.quantity);
+              dataBudget[teller] += value.budget;
+            } else {
+              categories.push(value.type);
+              dataSpend.push((value.price * value.quantity));
+              dataBudget.push(value.budget);
+              teller++;
+            }
+          }
+        }
+      });
+
+      vm.barChartLabels = categories;
+      vm.barChartData.push({data: dataSpend, label: 'Spend'});
+      vm.barChartData.push({data: dataBudget, label: 'Budget'});
+    }
+  }
+
   setExpenses(res){
     this.doneLoading = false;
     console.log(res);
@@ -135,6 +199,7 @@ export class DashboardComponent implements OnInit {
     this.setSelecetedExpenses();
     this.setExpensesPie();
     this.setExpensesOverview();
+    this.setBarChart()
   }
 
   public doughnutIncomeLabels:string[] = [];
@@ -216,54 +281,6 @@ export class DashboardComponent implements OnInit {
     return result
   }
 
-  public lineChartData:Array<any> = [
-    {data: [20, 40, 50, 60, 80, 90, 100], label: 'Series A'},
-    {data: [40, 45, 50, 55, 60, 65, 70], label: 'Series B'},
-    {data: [25, 35, 45, 55, 65, 75, 85], label: 'Series C'}
-  ];
-  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChartOptions:any = {
-    responsive: true
-  };
-  public lineChartColors:Array<any> = [
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    },
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    }
-  ];
-  public lineChartLegend:boolean = true;
-  public lineChartType:string = 'line';
-
-  public randomize():void {
-    let _lineChartData:Array<any> = new Array(this.lineChartData.length);
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      _lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
-      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-        _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
-      }
-    }
-    this.lineChartData = _lineChartData;
-  }
 
   panelOpenState: boolean = false;
 

@@ -6,6 +6,9 @@ import { GuestsComponent } from './guests/guests.component';
 import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { IncomeComponent } from './income/income.component';
+import {ExpensesDetailComponent} from "./expenses-detail/expenses-detail.component";
+import { GuestDetailComponent } from "./guest-detail/guest-detail.component"
+
 
 const routes: Routes = [
   {
@@ -31,6 +34,14 @@ const routes: Routes = [
   {
     path: 'income',
     component: IncomeComponent
+  },
+  {
+    path: 'expenses',
+    component: ExpensesDetailComponent
+  },
+  {
+    path: 'guest-detail',
+    component: GuestDetailComponent
   }
 ];
 

@@ -24,6 +24,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { IncomeComponent } from './income/income.component';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ExpensesDetailComponent } from './expenses-detail/expenses-detail.component';
+import { GuestDetailComponent } from './guest-detail/guest-detail.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCn7sK1OE6sSSDS0nL-aYEwa-E1et3j-_Q",
@@ -42,7 +44,9 @@ export const firebaseConfig = {
     GuestsComponent,
     MessagesComponent,
     DashboardComponent,
-    IncomeComponent
+    IncomeComponent,
+    ExpensesDetailComponent,
+    GuestDetailComponent
   ],
   imports: [
     BrowserModule,

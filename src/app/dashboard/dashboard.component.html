@@ -18,7 +18,7 @@
     <mat-card fxFlex="26%">
       <div class="container" fxLayout>
         <div fxFlex>
-          <div fxLayoutAlign="center">Expenses R{{totalExpense}}</div>
+          <div fxLayoutAlign="center" (click)="navigateTo('expenses')">Expenses R{{totalExpense}}</div>
           <canvas baseChart
                   [data]="doughnutExpenseData"
                   [labels]="doughnutExpenseLabels"
@@ -33,7 +33,7 @@
     <mat-card fxFlex="26%">
       <div class="container" fxLayout>
         <div fxFlex>
-          <div fxLayoutAlign="center">Guests {{totalGuests}}%</div>
+          <div fxLayoutAlign="center" (click)="navigateTo('guest-detail')">Guests {{totalGuests}}%</div>
           <canvas baseChart
                   [data]="doughnutGuestData"
                   [labels]="doughnutGuestLabels"
@@ -93,12 +93,11 @@
             <div fxLayoutAlign="center">Forecast</div>
 
             <canvas baseChart width="400" height="400"
-                    [datasets]="lineChartData"
-                    [labels]="lineChartLabels"
-                    [options]="lineChartOptions"
-                    [colors]="lineChartColors"
-                    [legend]="lineChartLegend"
-                    [chartType]="lineChartType"
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType"
                     (chartHover)="chartHovered($event)"
                     (chartClick)="chartClicked($event)"></canvas>
           </div>

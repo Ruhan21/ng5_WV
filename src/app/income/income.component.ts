@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { DataService } from '../data.service';
 import {MatTableDataSource} from '@angular/material';
 import * as moment from 'moment';
@@ -25,11 +24,11 @@ export class IncomeComponent implements OnInit {
 
   addIncome() {
     this.incomeModel.date = moment(this.incomeModel.date).format('DD-MM-YYYY');
-    this._data.addToList('fbRefIncomeList',this.incomeModel)
+    this._data.addToList('fbRefIncomeList',this.incomeModel);
     this.incomeModel = {type: '',description: '',amount: '',date: ''};
   }
 
-  displayedColumns = ['type', 'description', 'amount', 'date'];
+  displayedColumns = ['type', 'description', 'amount', 'date', 'actions'];
   dataSource :any;
   loading = false;
 
@@ -41,10 +40,18 @@ export class IncomeComponent implements OnInit {
     }
   }
 
+  removeItem(item){
+    console.log(item);
+    this._data.removeItemFormList('fbRefIncomeList',item);
+  }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
+  }
+
+  backToDash(page) {
+    this._data.navigateTo(page)
   }
 }
