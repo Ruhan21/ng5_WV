@@ -9,14 +9,18 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class DataService {
 
-  private navigationButtons = new BehaviorSubject<any>(['Home','Venue','Guests','Messages']);
+  private UserData = new BehaviorSubject<any>({displayName: '', photoURL: '', uid: ''});
+  private navigationButtons = new BehaviorSubject<any>(['Home','Venue','Guests','Messages','Login']);
   private currentPage = new BehaviorSubject<any>('');
   private expenseTable = new BehaviorSubject<any>([]);
   private incomeTable = new BehaviorSubject<any>([]);
   private guestTable = new BehaviorSubject<any>([]);
   private lookupTable = new BehaviorSubject<any>([]);
   private messageCenter = new BehaviorSubject<any>([]);
+  private isLoggedIn = new BehaviorSubject<any>(false);
 
+  loggedIn = this.isLoggedIn.asObservable();
+  user = this.UserData.asObservable();
   navBtns = this.navigationButtons.asObservable();
   curPage = this.currentPage.asObservable();
   expenses = this.expenseTable.asObservable();
@@ -97,5 +101,10 @@ export class DataService {
         return 1;
       return 0;
     })
+  }
+
+  setUser(user) {
+    this.UserData.next({displayName: user.displayName, photoURL:user.photoURL, uid:user.uid});
+    this.isLoggedIn.next(true);
   }
 }

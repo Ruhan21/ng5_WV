@@ -10,8 +10,10 @@ export class HeaderComponent implements OnInit {
 
   navBtns = [];
   curPage: string;
+  isVisibile:boolean = true;
 
   constructor(private _data: DataService) {
+    this._data.loggedIn.subscribe(res => this.isVisibile = res);
   }
 
   ngOnInit() {

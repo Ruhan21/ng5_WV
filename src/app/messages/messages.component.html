@@ -19,6 +19,13 @@
         </mat-form-field>
       </mat-card-content>
 
+      <div class="form-group">
+        <label for="file">Choose File</label>
+        <input type="file"
+               id="file"
+               (change)="handleFileSelect($event)">
+      </div>
+
       <div class="move-bottom">
         <mat-card-actions>
           <button [disabled]="!f.valid" mat-raised-button color="accent">Post Message</button>

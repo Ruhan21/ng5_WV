@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {AngularFireAuth} from "angularfire2/auth";
+import {DataService} from "./data.service";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor(private _data: DataService, private afAuth: AngularFireAuth){
+    afAuth.authState.subscribe(user => {
+      if(!user){
+        _data.navigateTo('Login')
+      } else {
+        this._data.setUser(user);
+
+        // _data.navigateTo('')
+      }
+    })
+  }
+
+
+
 }

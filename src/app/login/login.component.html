@@ -1,0 +1,19 @@
+<div class="container main-images" fxLayout fxLayoutAlign="center">
+  <div fxFlex="80%" fxFlex.lt-sm="100%">
+    <div class="container" fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="30px">
+      <mat-card fxFlex.gt-sm="75" fxFlex>
+        <div class="card">
+          <img class="card-image"  src="../../assets/images/login/welcome.jpg" alt="">
+        </div>
+      </mat-card>
+
+      <mat-card fxFlex.gt-sm="25" fxFlex>
+        <h3>Login with:</h3>
+        <div fxLayout="column" fxLayoutGap="20px">
+          <button (click)="googleLogin()" mat-raised-button color="accent">Google</button>
+          <button (click)="googleLogin()" mat-raised-button color="accent">Facebook</button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

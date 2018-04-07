@@ -6,6 +6,8 @@ import { AngularFireModule } from 'angularfire2';
 // New imports to update based on AngularFire2 version 4
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import {AngularFireStorageModule} from 'angularfire2/storage'
+
 
 import { ChartsModule } from 'ng2-charts';
 import {DataService} from './data.service'
@@ -26,6 +28,8 @@ import { IncomeComponent } from './income/income.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ExpensesDetailComponent } from './expenses-detail/expenses-detail.component';
 import { GuestDetailComponent } from './guest-detail/guest-detail.component';
+import { LoginComponent } from './login/login.component';
+import { LoginAuthService } from './login-auth.service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCn7sK1OE6sSSDS0nL-aYEwa-E1et3j-_Q",
@@ -46,7 +50,8 @@ export const firebaseConfig = {
     DashboardComponent,
     IncomeComponent,
     ExpensesDetailComponent,
-    GuestDetailComponent
+    GuestDetailComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -60,9 +65,10 @@ export const firebaseConfig = {
     ReactiveFormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireStorageModule
   ],
-  providers: [DataService],
+  providers: [DataService, LoginAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
