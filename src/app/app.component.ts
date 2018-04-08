@@ -13,11 +13,11 @@ export class AppComponent {
   constructor(private _data: DataService, private afAuth: AngularFireAuth){
     afAuth.authState.subscribe(user => {
       if(!user){
-        _data.navigateTo('Login')
+        _data.navigateTo('login')
       } else {
         this._data.setUser(user);
 
-        // _data.navigateTo('')
+         _data.navigateTo('home')
       }
     })
   }

@@ -9,7 +9,17 @@ import {DataService} from '../data.service'
 })
 export class IntroComponent implements OnInit {
 
-  constructor(private _data: DataService) { }
+  user:any;
+
+  constructor(private _data: DataService) {
+    this._data.user.subscribe(res => {
+      this.user = res;
+
+      if(!this.user.photoURL){
+        this.user.photoURL = 'assets/images/intro/default.png'
+      }
+    });
+  }
 
   curPage = 'home';
 

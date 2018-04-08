@@ -14,9 +14,12 @@
     <mat-card fxFlex="60%" fxFlex.lt-sm="100%">
       <div style="background-image: url(../../assets/images/backgrounds/bg2.jpg); background-size:cover; min-height: 450px; position: relative">
 
-        <div class="container" fxLayout fxLayoutAlign="left" fxLayoutGap="20px">
-          <img class="avatar" src="http://via.placeholder.com/150x150" alt="">
-          <h1>Dear (name)</h1>
+        <div class="container" fxLayout fxLayoutAlign="left" fxLayoutGap="10px">
+          <img class="avatar" style="height: 150px; width: 150px" src="{{user.photoURL}}" alt="">
+          <div class="container" fxLayout="column" fxLayoutGap="10px">
+            <h3>Dear</h3>
+            <h1 style="display: flex;align-items: center;">{{user.displayName}}</h1>
+          </div>
         </div>
 
         <div class="container" fxLayout>

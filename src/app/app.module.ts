@@ -29,7 +29,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ExpensesDetailComponent } from './expenses-detail/expenses-detail.component';
 import { GuestDetailComponent } from './guest-detail/guest-detail.component';
 import { LoginComponent } from './login/login.component';
-import { LoginAuthService } from './login-auth.service';
+import { LoginGuard } from './login.guard';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCn7sK1OE6sSSDS0nL-aYEwa-E1et3j-_Q",
@@ -68,7 +68,7 @@ export const firebaseConfig = {
     AngularFireAuthModule,
     AngularFireStorageModule
   ],
-  providers: [DataService, LoginAuthService],
+  providers: [DataService, LoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

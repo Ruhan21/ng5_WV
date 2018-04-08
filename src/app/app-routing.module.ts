@@ -9,49 +9,49 @@ import { IncomeComponent } from './income/income.component';
 import {ExpensesDetailComponent} from "./expenses-detail/expenses-detail.component";
 import { GuestDetailComponent } from "./guest-detail/guest-detail.component"
 import { LoginComponent } from './login/login.component';
-import { LoginAuthService } from './login-auth.service';
+import { LoginGuard } from './login.guard';
 
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: IntroComponent,
-    canActivate: [LoginAuthService]
+    canActivate: [LoginGuard]
   },
   {
     path: 'venue',
     component: VenueComponent,
-    canActivate: [LoginAuthService]
+    canActivate: [LoginGuard]
   },
   {
     path: 'guests',
     component: GuestsComponent,
-    canActivate: [LoginAuthService]
+    canActivate: [LoginGuard]
   },
   {
     path: 'messages',
     component: MessagesComponent,
-    canActivate: [LoginAuthService]
+    canActivate: [LoginGuard]
   },
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [LoginAuthService]
+    canActivate: [LoginGuard]
   },
   {
     path: 'income',
     component: IncomeComponent,
-    canActivate: [LoginAuthService]
+    canActivate: [LoginGuard]
   },
   {
     path: 'expenses',
     component: ExpensesDetailComponent,
-    canActivate: [LoginAuthService]
+    canActivate: [LoginGuard]
   },
   {
     path: 'guest-detail',
     component: GuestDetailComponent,
-    canActivate: [LoginAuthService]
+    canActivate: [LoginGuard]
   },
   {
     path: 'login',
@@ -61,6 +61,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
+  providers: [LoginGuard],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
