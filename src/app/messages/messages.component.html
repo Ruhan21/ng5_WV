@@ -1,9 +1,9 @@
 <div class="message-intro container" fxLayout>
   <mat-card class="message-from" fxFlex fxFlex.gt-sm="40%" fxFlexOffset.gt-sm="10%">
-    <form (ngSubmit)="addPost(); f.resetForm()" #f="ngForm">
+    <form #f="ngForm">
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Hi (name)</mat-card-title>
+        <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + user.photoURL + ')','background-size':'cover'}"></div>
+        <mat-card-title>Hi {{user.displayName}}</mat-card-title>
         <mat-card-subtitle>Leave us a message</mat-card-subtitle>
         <mat-icon class="message-icon">verified_user</mat-icon>
       </mat-card-header>
@@ -20,15 +20,17 @@
       </mat-card-content>
 
       <div class="form-group">
-        <label for="file">Choose File</label>
-        <input type="file"
-               id="file"
-               (change)="handleFileSelect($event)">
+        <button (click)="fileClick()" mat-raised-button color="accent">Attach</button>
+        <input hidden type="file" id="file"(change)="handleFileSelect($event)">
+      </div>
+
+      <div class="container" style="margin-bottom: 50px; margin-top: 10px" fxLayout>
+        <img style="height: 100%; width: 100%" *ngIf="base64textString" src="{{base64textString}}" alt="">
       </div>
 
       <div class="move-bottom">
         <mat-card-actions>
-          <button [disabled]="!f.valid" mat-raised-button color="accent">Post Message</button>
+          <button (click)="addPost(f);" [disabled]="!f.valid" mat-raised-button color="accent">Post Message</button>
         </mat-card-actions>
       </div>
     </form>

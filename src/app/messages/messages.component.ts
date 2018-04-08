@@ -17,12 +17,14 @@ export class MessagesComponent implements OnInit {
   uploadPercentage: any;
   downloadURL:any;
 
-  base64textString: any;
+  base64textString: any = '';
 
   messageModel:string;
+  user:any;
 
   constructor(private _data:DataService, private storage: AngularFireStorage) {
     this._data.messages.subscribe(res => this.setupTiles(res));
+    this._data.user.subscribe(res => this.user = res);
   }
 
   ngOnInit() {
@@ -57,16 +59,51 @@ export class MessagesComponent implements OnInit {
     console.log(vm.tiles);
   }
 
-  addPost(){
-    this._data.addToList('fbRefMessageList',this.messageModel)
+  fileClick(){
+    document.getElementById('file').click();
+  }
+
+  setupPayload(key){
+    let payload = {
+      from: this.user.displayName,
+      photoUrl: this.user.photoURL,
+      message: this.messageModel,
+      attachmentUrl: this.downloadURL,
+      key: key
+    };
+
+    return payload
+  }
+
+  addPost(form){
+
+    const newMes = this._data.fbRefMessageList.push({});
+    if(this.base64textString){
+      this.uploadImage(newMes.key).then(res => {
+        if(res){
+          newMes.set(this.setupPayload(newMes.key))
+          form.resetForm();
+        }
+      });
+    } else {
+      newMes.set(this.setupPayload(newMes.key))
+      form.resetForm();
+    }
   }
 
   uploadImage(id){
-    const ref = this.storage.ref(`${id}.jpg`);
-    const task = ref.putString(this.base64textString,'data_url');
+    let promise = new Promise((resolve,reject) =>{
+      const ref = this.storage.ref(`${id}.jpg`);
+      const task = ref.putString(this.base64textString,'data_url');
 
-    this.uploadPercentage = task.percentageChanges();
-    this.downloadURL = task.downloadURL();
+      this.uploadPercentage = task.percentageChanges();
+      task.downloadURL().subscribe(res => {
+        this.downloadURL = res;
+        resolve(true);
+      });
+    });
+
+    return promise;
   }
 
   _handleReaderLoaded(readerEvt) {
@@ -85,8 +122,6 @@ export class MessagesComponent implements OnInit {
 
       reader.readAsBinaryString(file);
     }
-
-    this.uploadImage('uniqueID')
   }
 
 }
