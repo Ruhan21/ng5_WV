@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {DataService} from '../data.service'
-import {AngularFireStorage} from 'angularfire2/storage'
+import {Component, OnInit} from '@angular/core';
+import {DataService} from '../data.service';
+import {AngularFireStorage} from 'angularfire2/storage';
 
 @Component({
   selector: 'app-messages',
@@ -15,14 +15,14 @@ export class MessagesComponent implements OnInit {
   tiles2 = [];
   messages = [];
   uploadPercentage: any;
-  downloadURL:any;
+  downloadURL: any;
 
   base64textString: any = '';
 
-  messageModel:string;
-  user:any;
+  messageModel: string;
+  user: any;
 
-  constructor(private _data:DataService, private storage: AngularFireStorage) {
+  constructor(private _data: DataService, private storage: AngularFireStorage) {
     this._data.messages.subscribe(res => this.setupTiles(res));
     this._data.user.subscribe(res => this.user = res);
   }
@@ -31,23 +31,23 @@ export class MessagesComponent implements OnInit {
     this._data.changeCurPage(this.currPage);
   }
 
-  setupTiles(res){
-    let vm = this;
+  setupTiles(res) {
+    const vm = this;
     vm.tiles = [];
     vm.messages = res;
 
     vm.messages.forEach(function (value) {
       console.log(value.length);
-      if(value.length > 1000){
-        vm.tiles.push({text: value, cols: 2, rows: 3})
-      } else if(value.length < 1000 && value.length > 500){
-        vm.tiles.push({text: value, cols: 1, rows: 3})
-      } else if(value.length < 500 && value.length > 250){
-        vm.tiles.push({text: value, cols: 1, rows: 2})
-      } else if(value.length < 250 && value.length > 100){
-        vm.tiles.push({text: value, cols: 1, rows: 2})
-      } else if(value.length < 100){
-        vm.tiles.push({text: value, cols: 1, rows: 1})
+      if (value.length > 1000) {
+        vm.tiles.push({text: value, cols: 2, rows: 3});
+      } else if (value.length < 1000 && value.length > 500) {
+        vm.tiles.push({text: value, cols: 1, rows: 3});
+      } else if (value.length < 500 && value.length > 250) {
+        vm.tiles.push({text: value, cols: 1, rows: 2});
+      } else if (value.length < 250 && value.length > 100) {
+        vm.tiles.push({text: value, cols: 1, rows: 2});
+      } else if (value.length < 100) {
+        vm.tiles.push({text: value, cols: 1, rows: 1});
       }
 
     });
@@ -55,16 +55,16 @@ export class MessagesComponent implements OnInit {
     vm.tiles1 = [...vm.tiles];
     vm.tiles1.reverse();
     vm.tiles2 = [...vm.tiles];
-    vm.tiles2.splice(0,1);
+    vm.tiles2.splice(0, 1);
     console.log(vm.tiles);
   }
 
-  fileClick(){
+  fileClick() {
     document.getElementById('file').click();
   }
 
-  setupPayload(key){
-    let payload = {
+  setupPayload(key) {
+    const payload = {
       from: this.user.displayName,
       photoUrl: this.user.photoURL,
       message: this.messageModel,
@@ -72,29 +72,29 @@ export class MessagesComponent implements OnInit {
       key: key
     };
 
-    return payload
+    return payload;
   }
 
-  addPost(form){
+  addPost(form) {
 
     const newMes = this._data.fbRefMessageList.push({});
-    if(this.base64textString){
+    if (this.base64textString) {
       this.uploadImage(newMes.key).then(res => {
-        if(res){
-          newMes.set(this.setupPayload(newMes.key))
+        if (res) {
+          newMes.set(this.setupPayload(newMes.key));
           form.resetForm();
         }
       });
     } else {
-      newMes.set(this.setupPayload(newMes.key))
+      newMes.set(this.setupPayload(newMes.key));
       form.resetForm();
     }
   }
 
-  uploadImage(id){
-    let promise = new Promise((resolve,reject) =>{
+  uploadImage(id) {
+    const promise = new Promise((resolve, reject) => {
       const ref = this.storage.ref(`${id}.jpg`);
-      const task = ref.putString(this.base64textString,'data_url');
+      const task = ref.putString(this.base64textString, 'data_url');
 
       this.uploadPercentage = task.percentageChanges();
       task.downloadURL().subscribe(res => {
@@ -107,16 +107,16 @@ export class MessagesComponent implements OnInit {
   }
 
   _handleReaderLoaded(readerEvt) {
-    var binaryString = readerEvt.target.result;
-    this.base64textString= 'data:image/jpeg;base64,' + btoa(binaryString);
+    const binaryString = readerEvt.target.result;
+    this.base64textString = 'data:image/jpeg;base64,' + btoa(binaryString);
   }
 
   handleFileSelect(evt) {
-    var files = evt.target.files;
-    var file = files[0];
+    const files = evt.target.files;
+    const file = files[0];
 
     if (files && file) {
-      var reader = new FileReader();
+      const reader = new FileReader();
 
       reader.onload = this._handleReaderLoaded.bind(this);
 
