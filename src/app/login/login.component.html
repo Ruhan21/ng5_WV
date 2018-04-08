@@ -2,17 +2,34 @@
   <div fxFlex="80%" fxFlex.lt-sm="100%">
     <div class="container" fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="30px">
       <mat-card fxFlex.gt-sm="75" fxFlex>
-        <div class="card">
-          <img class="card-image"  src="../../assets/images/login/welcome.jpg" alt="">
+        <div>
+          <img style="width: 100%; height: 100%" src="../../assets/images/login/welcome.jpg" alt="">
         </div>
       </mat-card>
 
       <mat-card fxFlex.gt-sm="25" fxFlex>
-        <h3>Login with:</h3>
-        <div fxLayout="column" fxLayoutGap="20px">
-          <button (click)="googleLogin()" mat-raised-button color="accent">Google</button>
-          <button (click)="googleLogin()" mat-raised-button color="accent">Facebook</button>
+        <div *ngIf="!hasUser && !loggedIn">
+          <h3>Login with:</h3>
+          <div fxLayout="column" fxLayoutGap="20px">
+            <button (click)="googleLogin()" mat-raised-button color="accent">Google</button>
+            <button (click)="googleLogin()" mat-raised-button color="accent">Facebook</button>
+          </div>
         </div>
+
+        <form *ngIf="hasUser && !loggedIn" (ngSubmit)="submitToken()" #f="ngForm">
+          <div fxLayout="column" fxLayoutGap="20px">
+            <mat-form-field fxFlex>
+              <input required type="number" name="tokenNum" #tokenNum="ngModel" [(ngModel)]="token"
+                     matInput placeholder="insert your token number here" value="">
+              <mat-error *ngIf="!tokenNum.valid">
+                please enter a token number
+              </mat-error>
+            </mat-form-field>
+
+            <button type="submit" mat-raised-button color="accent">Submit token</button>
+          </div>
+        </form>
+
       </mat-card>
     </div>
   </div>

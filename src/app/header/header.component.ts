@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../data.service'
+import {AngularFireAuth} from "angularfire2/auth";
 
 @Component({
   selector: 'app-header',
@@ -12,12 +13,20 @@ export class HeaderComponent implements OnInit {
   curPage: string;
   isVisibile:boolean = true;
 
-  constructor(private _data: DataService) {
+  constructor(private afAuth: AngularFireAuth, private _data: DataService) {
     this._data.loggedIn.subscribe(res => this.isVisibile = res);
   }
 
   ngOnInit() {
     this._data.navBtns.subscribe(res => this.navBtns = res);
+  }
+
+  signOut(){
+    let result = this.afAuth.auth.signOut();
+    if(result){
+      this._data.signOut();
+      this.navigateTo('login');
+    }
   }
 
   navigateTo(page) {

@@ -13,8 +13,8 @@ export class MessagesComponent implements OnInit {
   tiles = [];
   tiles1 = [];
   tiles2 = [];
-  messages = [];
-  uploadPercentage: any;
+  messagesLoaded = false;
+  uploadPercentage: any = 0;
   downloadURL: any;
 
   base64textString: any = '';
@@ -32,31 +32,34 @@ export class MessagesComponent implements OnInit {
   }
 
   setupTiles(res) {
-    const vm = this;
-    vm.tiles = [];
-    vm.messages = res;
+    if(res.length){
+      this.messagesLoaded = false;
+      const vm = this;
+      let count = 0;
+      vm.tiles = [];
+      vm.tiles1 = [];
+      vm.tiles2 = [];
 
-    vm.messages.forEach(function (value) {
-      console.log(value.length);
-      if (value.length > 1000) {
-        vm.tiles.push({text: value, cols: 2, rows: 3});
-      } else if (value.length < 1000 && value.length > 500) {
-        vm.tiles.push({text: value, cols: 1, rows: 3});
-      } else if (value.length < 500 && value.length > 250) {
-        vm.tiles.push({text: value, cols: 1, rows: 2});
-      } else if (value.length < 250 && value.length > 100) {
-        vm.tiles.push({text: value, cols: 1, rows: 2});
-      } else if (value.length < 100) {
-        vm.tiles.push({text: value, cols: 1, rows: 1});
-      }
+      res.reverse().forEach(function (value) {
+        switch (count) {
+          case 0: vm.tiles1.push(value);
+            break;
+          case 1: vm.tiles.push(value);
+            break;
+          case 2: vm.tiles2.push(value);
+            break;
+        }
 
-    });
+        if(count === 2){
+          count = 0;
+        } else {
+          count++
+        }
 
-    vm.tiles1 = [...vm.tiles];
-    vm.tiles1.reverse();
-    vm.tiles2 = [...vm.tiles];
-    vm.tiles2.splice(0, 1);
-    console.log(vm.tiles);
+      });
+
+      this.messagesLoaded = true;
+    }
   }
 
   fileClick() {
@@ -83,11 +86,15 @@ export class MessagesComponent implements OnInit {
         if (res) {
           newMes.set(this.setupPayload(newMes.key));
           form.resetForm();
+          this.base64textString = '';
+          this.uploadPercentage = 0;
         }
       });
     } else {
       newMes.set(this.setupPayload(newMes.key));
       form.resetForm();
+      this.base64textString = '';
+      this.uploadPercentage = 0;
     }
   }
 
@@ -106,9 +113,9 @@ export class MessagesComponent implements OnInit {
     return promise;
   }
 
-  _handleReaderLoaded(readerEvt) {
+  _handleReaderLoaded(file,readerEvt) {
     const binaryString = readerEvt.target.result;
-    this.base64textString = 'data:image/jpeg;base64,' + btoa(binaryString);
+    this.base64textString = 'data:'+file.type+';base64,' + btoa(binaryString);
   }
 
   handleFileSelect(evt) {
@@ -118,7 +125,7 @@ export class MessagesComponent implements OnInit {
     if (files && file) {
       const reader = new FileReader();
 
-      reader.onload = this._handleReaderLoaded.bind(this);
+      reader.onload = this._handleReaderLoaded.bind(this,file);
 
       reader.readAsBinaryString(file);
     }

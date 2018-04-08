@@ -14,9 +14,10 @@ export class GuestDetailComponent implements OnInit {
 
   types = ['Friend','Family'];
 
-  guestModel = {type: '',name: '',surname: '',table: '',going:false};
+  guestModel = {type: '',name: '',surname: '',table: '',going:false, token: 0};
   guest = [];
   isNew = true;
+  lastToken = 0;
 
   ngOnInit() {
     this._data.guests.subscribe(res => this.dataSource = this.setGuest(res));
@@ -24,14 +25,15 @@ export class GuestDetailComponent implements OnInit {
 
   editItem(){
     this._data.updateList('fbRefGuestList',this.guestModel);
-    this.guestModel = {type: '',name: '',surname: '',table: '',going:false};
+    this.guestModel = {type: '',name: '',surname: '',table: '',going:false, token: 0};
     this.isNew = true;
   }
 
   addGuest() {
     if(this.isNew){
+      this.guestModel.token = (this.lastToken + 1);
       this._data.addToList('fbRefGuestList',this.guestModel);
-      this.guestModel = {type: '',name: '',surname: '',table: '',going:false};
+      this.guestModel = {type: '',name: '',surname: '',table: '',going:false, token: 0};
     } else {
       this.editItem();
     }
@@ -44,7 +46,8 @@ export class GuestDetailComponent implements OnInit {
   setGuest(res){
     if(res.length > 0){
       this.loading = true;
-      this.guest = res;
+      this.guest = res.reverse();
+      this.lastToken = this.guest[0].token;
       return new MatTableDataSource(this.guest);
     }
   }

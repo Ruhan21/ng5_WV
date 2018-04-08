@@ -18,7 +18,9 @@ export class DataService {
   private lookupTable = new BehaviorSubject<any>([]);
   private messageCenter = new BehaviorSubject<any>([]);
   private isLoggedIn = new BehaviorSubject<any>(false);
+  private validToken = new BehaviorSubject<any>(false);
 
+  token = this.validToken.asObservable();
   loggedIn = this.isLoggedIn.asObservable();
   user = this.UserData.asObservable();
   navBtns = this.navigationButtons.asObservable();
@@ -86,6 +88,7 @@ export class DataService {
 
   addToList(list,item){
     let newSongRef = this[list].push({});
+    item.key = newSongRef.key;
     newSongRef.set(item);
   }
 
@@ -105,6 +108,57 @@ export class DataService {
 
   setUser(user) {
     this.UserData.next({displayName: user.displayName, photoURL:user.photoURL, uid:user.uid});
-    this.isLoggedIn.next(true);
+    this.checkToken(user.uid);
+  }
+
+  signOut() {
+    this.isLoggedIn.next(false);
+    this.UserData.next({displayName: '', photoURL: '', uid: ''});
+    this.currentPage.next('');
+  }
+
+  checkToken(uid){
+    const vm = this;
+    let returnToken = false;
+    this.guests.forEach(function (value) {
+      value.forEach(function (obj) {
+        if(obj.uid){
+          if(obj.uid === uid){
+            returnToken = true;
+            vm.isLoggedIn.next(true);
+            if(vm.currentPage.getValue() === ''){
+              vm.navigateTo('home');
+            }
+          }
+        }
+      })
+    });
+
+    return returnToken;
+  }
+
+  newToken(token: number,uid) {
+    let returnToken = false;
+    let updateItem:any;
+
+    const vm = this;
+    this.guests.forEach(function (value) {
+
+      value.forEach(function (obj) {
+        if(obj.token === token){
+          if(!obj.uid){
+            updateItem = {...obj};
+
+            updateItem.uid = uid;
+            vm.updateList('fbRefGuestList',updateItem);
+            vm.isLoggedIn.next(true);
+            returnToken = true;
+          }
+        }
+      });
+
+    });
+
+    return returnToken;
   }
 }

@@ -11,7 +11,25 @@ import {DataService} from "../data.service";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private afAuth: AngularFireAuth, public _data: DataService) { }
+  validToken = false;
+  token: number;
+  user: any;
+  loggedIn = false;
+  hasUser = false;
+  error = false;
+
+  constructor(private afAuth: AngularFireAuth, public _data: DataService) {
+    this._data.user.subscribe(res => {
+      this.user = res;
+      if(res.uid){
+        this.hasUser = true;
+      }
+    });
+
+    this._data.loggedIn.subscribe(res => {
+      this.loggedIn = res;
+    })
+  }
 
   ngOnInit() {
   }
@@ -21,13 +39,12 @@ export class LoginComponent implements OnInit {
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
   }
 
-  // async googleLogin() : Promise<void>{
-  //   try{
-  //     const provider = new firebase.auth.GoogleAuthProvider();
-  //     const credentail = await firebase.auth().signInWithPopup(provider);
-  //   } catch (err){
-  //     console.log(err)
-  //   }
-  // }
+  submitToken(){
+    if(this._data.newToken(this.token,this.user.uid)){
+      this._data.navigateTo('home');
+    } else {
+      this.error = true
+    }
+  }
 
 }

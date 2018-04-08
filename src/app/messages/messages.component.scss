@@ -11,7 +11,7 @@
     .move-bottom {
       bottom: 0;
       position: absolute;
-      left: 40px;
+      width: 92%;
     }
 
     .message-icon {
@@ -42,4 +42,8 @@
 .user-image {
   background-image: url('../../assets/images/intro/default.png');
   background-size: cover;
+}
+
+.progress {
+  left: 0;
 }

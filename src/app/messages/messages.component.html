@@ -30,8 +30,16 @@
 
       <div class="move-bottom">
         <mat-card-actions>
-          <button (click)="addPost(f);" [disabled]="!f.valid" mat-raised-button color="accent">Post Message</button>
+          <button style="left: 15px;" (click)="addPost(f);" [disabled]="!f.valid" mat-raised-button color="accent">Post Message</button>
         </mat-card-actions>
+
+        <section>
+          <mat-progress-bar class="progress"
+                            [color]="primary"
+                            [mode]="determinate"
+                            [value]="uploadPercentage | async">
+          </mat-progress-bar>
+        </section>
       </div>
     </form>
   </mat-card>
@@ -41,23 +49,27 @@
   <h1>Message Center</h1>
 </div>
 
-<div class="container" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="15px">
+<div *ngIf="messagesLoaded" class="container" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="15px">
 
   <div fxFlex="30">
     <div class="container" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="15px">
 
       <div *ngFor="let tile of tiles">
         <div class="container" fxLayout>
-          <mat-card fxFlex>
+          <mat-card fxFlex="100">
             <div class="container" fxLayout fxLayoutAlign="center">
               <div fxFlex="90">
 
                 <div style="padding: 15px 0 15px 0; display: flex; align-items: center" class="container" fxLayout>
-                  <div mat-card-avatar class="user-image"></div>
-                  <div style="padding-left: 15px">Message from:</div>
+                  <div mat-card-avatar class="user-image" [ngStyle]="{'background-image': 'url(' + tile.photoUrl + ')'}"></div>
+                  <p style="padding-left: 15px">Message from: <strong>{{tile.from}}</strong> </p>
                 </div>
 
-                {{tile.text}}
+                <p>{{tile.message}}</p>
+
+                <div class="container" style="margin-top: 10px" fxLayout>
+                  <img style="height: 100%; width: 100%" src="{{tile.attachmentUrl}}" alt="">
+                </div>
               </div>
             </div>
           </mat-card>
@@ -72,16 +84,20 @@
 
       <div *ngFor="let tile of tiles1">
         <div class="container" fxLayout>
-          <mat-card fxFlex>
+          <mat-card fxFlex="100">
             <div class="container" fxLayout fxLayoutAlign="center">
               <div fxFlex="90">
 
                 <div style="padding: 15px 0 15px 0; display: flex; align-items: center" class="container" fxLayout>
-                  <div mat-card-avatar class="user-image"></div>
-                  <div style="padding-left: 15px">Message from:</div>
+                  <div mat-card-avatar class="user-image" [ngStyle]="{'background-image': 'url(' + tile.photoUrl + ')'}"></div>
+                  <p style="padding-left: 15px">Message from: <strong>{{tile.from}}</strong> </p>
                 </div>
 
-                {{tile.text}}
+                <p>{{tile.message}}</p>
+
+                <div class="container" style="margin-top: 10px" fxLayout>
+                  <img style="height: 100%; width: 100%" src="{{tile.attachmentUrl}}" alt="">
+                </div>
               </div>
             </div>
           </mat-card>
@@ -96,16 +112,20 @@
 
       <div *ngFor="let tile of tiles2">
         <div class="container" fxLayout>
-          <mat-card fxFlex>
+          <mat-card fxFlex="100">
             <div class="container" fxLayout fxLayoutAlign="center">
               <div fxFlex="90">
 
                 <div style="padding: 15px 0 15px 0; display: flex; align-items: center" class="container" fxLayout>
-                  <div mat-card-avatar class="user-image"></div>
-                  <div style="padding-left: 15px">Message from:</div>
+                  <div mat-card-avatar class="user-image" [ngStyle]="{'background-image': 'url(' + tile.photoUrl + ')'}"></div>
+                  <p style="padding-left: 15px">Message from: <strong>{{tile.from}}</strong> </p>
                 </div>
 
-                {{tile.text}}
+                <p>{{tile.message}}</p>
+
+                <div class="container" style="margin-top: 10px" fxLayout>
+                  <img style="height: 100%; width: 100%" src="{{tile.attachmentUrl}}" alt="">
+                </div>
               </div>
             </div>
           </mat-card>

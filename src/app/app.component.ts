@@ -16,8 +16,6 @@ export class AppComponent {
         _data.navigateTo('login')
       } else {
         this._data.setUser(user);
-
-         _data.navigateTo('home')
       }
     })
   }
