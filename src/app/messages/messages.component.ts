@@ -100,7 +100,7 @@ export class MessagesComponent implements OnInit {
 
   uploadImage(id) {
     const promise = new Promise((resolve, reject) => {
-      const ref = this.storage.ref(`${id}.jpg`);
+      const ref = this.storage.ref(`${id}`);
       const task = ref.putString(this.base64textString, 'data_url');
 
       this.uploadPercentage = task.percentageChanges();
