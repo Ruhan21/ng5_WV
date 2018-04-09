@@ -10,14 +10,14 @@ import {DataService} from "./data.service";
 export class AppComponent {
   title = 'app';
 
-  constructor(private _data: DataService, private afAuth: AngularFireAuth){
+  constructor(private _data: DataService, private afAuth: AngularFireAuth) {
     afAuth.authState.subscribe(user => {
-      if(!user){
-        _data.navigateTo('login')
+      if (!user) {
+        _data.navigateTo('login');
       } else {
         this._data.setUser(user);
       }
-    })
+    });
   }
 
 

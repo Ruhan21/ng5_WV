@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService} from '../data.service'
+import {Component, OnInit} from '@angular/core';
+import {DataService} from '../data.service';
 import * as moment from 'moment';
 
 @Component({
@@ -10,7 +10,8 @@ import * as moment from 'moment';
 
 export class DashboardComponent implements OnInit {
 
-  constructor(private _data: DataService) { }
+  constructor(private _data: DataService) {
+  }
 
   currPage = 'dashboard';
   expenses = [];
@@ -29,37 +30,37 @@ export class DashboardComponent implements OnInit {
     this._data.guests.subscribe(res => this.setGuests(res));
   }
 
-  navigateTo(page){
-   this._data.navigateTo(page)
+  navigateTo(page) {
+    this._data.navigateTo(page);
   }
 
   // events
-  public chartClicked(e:any):void {
+  public chartClicked(e: any): void {
     console.log(e);
   }
 
-  public chartHovered(e:any):void {
+  public chartHovered(e: any): void {
     console.log(e);
   }
 
   // Pie
-  pieChartLabels:string[] = [];
-  pieChartData:number[] = [];
-  pieChartType:string = 'pie';
-  pieChartOptions:any = {
+  pieChartLabels: string[] = [];
+  pieChartData: number[] = [];
+  pieChartType: string = 'pie';
+  pieChartOptions: any = {
     responsive: true,
-    legend:{position:'right'}
+    legend: {position: 'right'}
   };
 
   setExpensesPie() {
-    let vm = this;
-    let dataLabel = [];
-    let dataValue = [];
+    const vm = this;
+    const dataLabel = [];
+    const dataValue = [];
 
-    if(vm.expenses.length > 0){
+    if (vm.expenses.length > 0) {
 
       vm.expenses.forEach(function (value) {
-        if(value.paid){
+        if (value.paid) {
           dataLabel.push(value.description);
           dataValue.push(value.price * value.quantity);
         }
@@ -74,29 +75,29 @@ export class DashboardComponent implements OnInit {
   }
 
   // Doughnut
-  public doughnutExpenseLabels:string[] = [];
-  public doughnutExpenseData:number[] = [];
-  public doughnutExpenseType:string = 'doughnut';
+  public doughnutExpenseLabels: string[] = [];
+  public doughnutExpenseData: number[] = [];
+  public doughnutExpenseType = 'doughnut';
 
   setExpensesOverview() {
-    let vm = this;
+    const vm = this;
     let dataLabel: string;
     let budget = 0;
     let spend = 0;
 
-    if(vm.expenses.length > 0){
+    if (vm.expenses.length > 0) {
 
       vm.expenses.forEach(function (value) {
-        if(value.selected){
+        if (value.selected) {
           budget += value.budget;
-          if(value.paid){
+          if (value.paid) {
             spend += value.price * value.quantity;
             budget -= value.price * value.quantity;
           }
         }
       });
 
-      if(budget > spend){
+      if (budget > spend) {
         dataLabel = 'remaining';
         vm.totalExpense = budget + spend;
       } else {
@@ -107,9 +108,8 @@ export class DashboardComponent implements OnInit {
       budget = Math.abs(budget);
 
 
-
-      vm.doughnutExpenseLabels = [dataLabel,'Spend'];
-      vm.doughnutExpenseData = [budget,spend];
+      vm.doughnutExpenseLabels = [dataLabel, 'Spend'];
+      vm.doughnutExpenseData = [budget, spend];
       this.doneLoading = true;
     }
   }
@@ -118,10 +118,10 @@ export class DashboardComponent implements OnInit {
   selectedExpenses = [];
 
   setSelecetedExpenses() {
-    let tempArray = [];
+    const tempArray = [];
 
     this.expenses.forEach(function (value) {
-      if(value.selected){
+      if (value.selected) {
         tempArray.push(value);
       }
     });
@@ -129,7 +129,7 @@ export class DashboardComponent implements OnInit {
     this.selectedExpenses = tempArray;
   }
 
-  public barChartOptions:any = {
+  public barChartOptions: any = {
     scaleShowVerticalLines: false,
     responsive: true,
     scales: {
@@ -140,33 +140,33 @@ export class DashboardComponent implements OnInit {
       }]
     }
   };
-  public barChartLabels:string[] = [];
-  public barChartType:string = 'bar';
-  public barChartLegend:boolean = true;
+  public barChartLabels: string[] = [];
+  public barChartType: string = 'bar';
+  public barChartLegend: boolean = true;
 
-  public barChartData:any[] = [];
+  public barChartData: any[] = [];
 
   setBarChart() {
-    let vm = this;
-    let categories = [];
-    let dataSpend =[];
-    let dataBudget =[];
+    const vm = this;
+    const categories = [];
+    const dataSpend = [];
+    const dataBudget = [];
     let expensesCopy = [...this.expenses];
     let teller = -1;
 
-    expensesCopy = this._data.OrderArray(expensesCopy,'type');
+    expensesCopy = this._data.OrderArray(expensesCopy, 'type');
 
-    if(expensesCopy.length > 0){
+    if (expensesCopy.length > 0) {
 
       expensesCopy.forEach(function (value) {
-        if(value.selected){
-          if(categories.length === 0){
+        if (value.selected) {
+          if (categories.length === 0) {
             categories.push(value.type);
             dataSpend.push((value.price * value.quantity));
             dataBudget.push(value.budget);
             teller++;
           } else {
-            if(categories[teller] === value.type){
+            if (categories[teller] === value.type) {
               dataSpend[teller] += (value.price * value.quantity);
               dataBudget[teller] += value.budget;
             } else {
@@ -185,7 +185,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  setExpenses(res){
+  setExpenses(res) {
     this.doneLoading = false;
     console.log(res);
     this.expenses = res;
@@ -193,30 +193,30 @@ export class DashboardComponent implements OnInit {
     this.setSelecetedExpenses();
     this.setExpensesPie();
     this.setExpensesOverview();
-    this.setBarChart()
+    this.setBarChart();
   }
 
-  public doughnutIncomeLabels:string[] = [];
-  public doughnutIncomeData:number[] = [];
-  public doughnutIncomeType:string = 'doughnut';
+  public doughnutIncomeLabels: string[] = [];
+  public doughnutIncomeData: number[] = [];
+  public doughnutIncomeType = 'doughnut';
 
   setIncome(res) {
 
-    let vm = this;
+    const vm = this;
     let incomeRecieved = 0;
     let futureIncome = 0;
     res.forEach(function (value) {
-      let numOfMonthsToGo = moment(vm.endDate,'DD-MM-YYYY').diff(vm.currentDate,'months');
-      let numOfMonthsPast = moment(vm.currentDate,'DD-MM-YYYY').diff(moment(value.date,'DD-MM-YYYY') ,'months');
+      const numOfMonthsToGo = moment(vm.endDate, 'DD-MM-YYYY').diff(vm.currentDate, 'months');
+      const numOfMonthsPast = moment(vm.currentDate, 'DD-MM-YYYY').diff(moment(value.date, 'DD-MM-YYYY'), 'months');
 
-      if(value.type === 'Monthly'){
+      if (value.type === 'Monthly') {
         incomeRecieved += numOfMonthsPast * value.amount;
         futureIncome += numOfMonthsToGo * value.amount;
       } else {
-        if( moment(vm.currentDate,'DD-MM-YYYY').diff(moment(value.date,'DD-MM-YYYY'),'days') < 0){
-          futureIncome += value.amount
+        if (moment(vm.currentDate, 'DD-MM-YYYY').diff(moment(value.date, 'DD-MM-YYYY'), 'days') < 0) {
+          futureIncome += value.amount;
         } else {
-          incomeRecieved += value.amount
+          incomeRecieved += value.amount;
         }
       }
     });
@@ -229,18 +229,18 @@ export class DashboardComponent implements OnInit {
   }
 
   // Doughnut
-  public doughnutGuestLabels:string[] = [];
-  public doughnutGuestData:number[] = [];
-  public doughnutGuestType:string = 'doughnut';
+  public doughnutGuestLabels: string[] = [];
+  public doughnutGuestData: number[] = [];
+  public doughnutGuestType = 'doughnut';
 
   setGuests(res) {
-    let vm = this;
+    const vm = this;
     let guestsGoing = 0;
     let guestsInvited = 0;
     let totalGuests = 0;
 
     res.forEach(function (value) {
-      if(value.going){
+      if (value.going) {
         vm.guests.push(value);
         guestsGoing += 1;
       } else {
@@ -253,29 +253,29 @@ export class DashboardComponent implements OnInit {
     vm.totalGuests = (guestsGoing / totalGuests) * 100;
 
     this.doughnutGuestLabels = ['Accepted', 'Rejected'];
-    this.doughnutGuestData = [guestsGoing, guestsInvited]
+    this.doughnutGuestData = [guestsGoing, guestsInvited];
   }
 
   paidItemChange(item) {
     item.paid = !item.paid;
-    this._data.updateList('fbRefExpenseList',item);
+    this._data.updateList('fbRefExpenseList', item);
   }
 
   // lineChart
 
-  getMonthsBetween(startDate,endDate){
-    let currentDate = startDate.clone();
-    let result = [];
+  getMonthsBetween(startDate, endDate) {
+    const currentDate = startDate.clone();
+    const result = [];
 
     while (startDate.isBefore(endDate)) {
-      result.push(currentDate.format("YYYY-MM-01"));
+      result.push(currentDate.format('YYYY-MM-01'));
       startDate.add(1, 'month');
     }
 
-    return result
+    return result;
   }
 
 
-  panelOpenState: boolean = false;
+  panelOpenState = false;
 
 }

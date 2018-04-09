@@ -66,7 +66,8 @@
         <div fxFlex>
           <div fxLayoutAlign="center">Selected Items Paid</div>
           <mat-selection-list #list>
-            <mat-list-option *ngFor="let item of selectedExpenses" (click)="paidItemChange(item)" [selected]="item.paid" [value]="item">
+            <mat-list-option *ngFor="let item of selectedExpenses" (click)="paidItemChange(item)" [selected]="item.paid"
+                             [value]="item">
               {{item.description}}
             </mat-list-option>
           </mat-selection-list>
@@ -80,7 +81,7 @@
       <div fxFlex>
         <div fxLayoutAlign="center">Guests attendance</div>
         <mat-list>
-          <mat-list-item *ngFor="let item of guests"> {{item.name}} {{item.surname}} </mat-list-item>
+          <mat-list-item *ngFor="let item of guests"> {{item.name}} {{item.surname}}</mat-list-item>
         </mat-list>
       </div>
     </mat-card>

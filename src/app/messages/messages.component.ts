@@ -32,7 +32,7 @@ export class MessagesComponent implements OnInit {
   }
 
   setupTiles(res) {
-    if(res.length){
+    if (res.length) {
       this.messagesLoaded = false;
       const vm = this;
       let count = 0;
@@ -50,10 +50,10 @@ export class MessagesComponent implements OnInit {
             break;
         }
 
-        if(count === 2){
+        if (count === 2) {
           count = 0;
         } else {
-          count++
+          count++;
         }
 
       });
@@ -113,9 +113,9 @@ export class MessagesComponent implements OnInit {
     return promise;
   }
 
-  _handleReaderLoaded(file,readerEvt) {
+  _handleReaderLoaded(file, readerEvt) {
     const binaryString = readerEvt.target.result;
-    this.base64textString = 'data:'+file.type+';base64,' + btoa(binaryString);
+    this.base64textString = 'data:' + file.type + ';base64,' + btoa(binaryString);
   }
 
   handleFileSelect(evt) {
@@ -125,7 +125,7 @@ export class MessagesComponent implements OnInit {
     if (files && file) {
       const reader = new FileReader();
 
-      reader.onload = this._handleReaderLoaded.bind(this,file);
+      reader.onload = this._handleReaderLoaded.bind(this, file);
 
       reader.readAsBinaryString(file);
     }

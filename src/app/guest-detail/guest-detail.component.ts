@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
+import {Component, OnInit} from '@angular/core';
+import {DataService} from '../data.service';
 import {MatTableDataSource} from '@angular/material';
 
 @Component({
@@ -9,42 +9,41 @@ import {MatTableDataSource} from '@angular/material';
 })
 export class GuestDetailComponent implements OnInit {
 
-  constructor(private _data:DataService) {
+  constructor(private _data: DataService) {
   }
 
-  types = ['Friend','Family'];
+  types = ['Friend', 'Family'];
 
-  guestModel = {type: '',name: '',surname: '',table: '',going:false, token: 0};
+  guestModel = {type: '', name: '', surname: '', table: '', going: false, token: 0};
   guest = [];
   isNew = true;
   lastToken = 0;
+  displayedColumns = ['type', 'name', 'surname', 'table', 'actions'];
+  dataSource: any;
+  loading = false;
 
   ngOnInit() {
     this._data.guests.subscribe(res => this.dataSource = this.setGuest(res));
   }
 
-  editItem(){
-    this._data.updateList('fbRefGuestList',this.guestModel);
-    this.guestModel = {type: '',name: '',surname: '',table: '',going:false, token: 0};
+  editItem() {
+    this._data.updateList('fbRefGuestList', this.guestModel);
+    this.guestModel = {type: '', name: '', surname: '', table: '', going: false, token: 0};
     this.isNew = true;
   }
 
   addGuest() {
-    if(this.isNew){
+    if (this.isNew) {
       this.guestModel.token = (this.lastToken + 1);
-      this._data.addToList('fbRefGuestList',this.guestModel);
-      this.guestModel = {type: '',name: '',surname: '',table: '',going:false, token: 0};
+      this._data.addToList('fbRefGuestList', this.guestModel);
+      this.guestModel = {type: '', name: '', surname: '', table: '', going: false, token: 0};
     } else {
       this.editItem();
     }
   }
 
-  displayedColumns = ['type', 'name', 'surname', 'table', 'actions'];
-  dataSource :any;
-  loading = false;
-
-  setGuest(res){
-    if(res.length > 0){
+  setGuest(res) {
+    if (res.length > 0) {
       this.loading = true;
       this.guest = res.reverse();
       this.lastToken = this.guest[0].token;
@@ -52,14 +51,14 @@ export class GuestDetailComponent implements OnInit {
     }
   }
 
-  updateSelected($event,item){
+  updateSelected($event, item) {
     console.log($event);
     item.going = $event.checked;
-    this._data.updateList('fbRefGuestList',item);
+    this._data.updateList('fbRefGuestList', item);
   }
 
-  removeItem(item){
-    this._data.removeItemFormList('fbRefGuestList',item);
+  removeItem(item) {
+    this._data.removeItemFormList('fbRefGuestList', item);
   }
 
   applyFilter(filterValue: string) {
@@ -68,13 +67,13 @@ export class GuestDetailComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  selectItem(item){
+  selectItem(item) {
     this.isNew = false;
     this.guestModel = item;
   }
 
   backToDash(page) {
-    this._data.navigateTo(page)
+    this._data.navigateTo(page);
   }
 
 }

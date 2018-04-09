@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import {DataService} from "../data.service";
+import {DataService} from '../data.service';
 
 @Component({
   selector: 'app-login',
@@ -21,14 +21,14 @@ export class LoginComponent implements OnInit {
   constructor(private afAuth: AngularFireAuth, public _data: DataService) {
     this._data.user.subscribe(res => {
       this.user = res;
-      if(res.uid){
+      if (res.uid) {
         this.hasUser = true;
       }
     });
 
     this._data.loggedIn.subscribe(res => {
       this.loggedIn = res;
-    })
+    });
   }
 
   ngOnInit() {
@@ -36,14 +36,14 @@ export class LoginComponent implements OnInit {
 
   googleLogin() {
     this.afAuth.auth
-      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
-  submitToken(){
-    if(this._data.newToken(this.token,this.user.uid)){
+  submitToken() {
+    if (this._data.newToken(this.token, this.user.uid)) {
       this._data.navigateTo('home');
     } else {
-      this.error = true
+      this.error = true;
     }
   }
 

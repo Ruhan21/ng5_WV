@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject'
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Router} from '@angular/router';
 
 import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
@@ -10,7 +10,7 @@ import {Observable} from 'rxjs/Observable';
 export class DataService {
 
   private UserData = new BehaviorSubject<any>({displayName: '', photoURL: '', uid: ''});
-  private navigationButtons = new BehaviorSubject<any>(['Home','Venue','Guests','Messages','Login']);
+  private navigationButtons = new BehaviorSubject<any>(['Home', 'Venue', 'Guests', 'Messages', 'Login']);
   private currentPage = new BehaviorSubject<any>('');
   private expenseTable = new BehaviorSubject<any>([]);
   private incomeTable = new BehaviorSubject<any>([]);
@@ -46,68 +46,70 @@ export class DataService {
 
   constructor(public af: AngularFireDatabase, private router: Router) {
     this.fbRefExpenseList = this.createList('expenseTable');
-    this.fbExpenseObservable = this.createObs(this.fbRefExpenseList,this.expenseTable);
+    this.fbExpenseObservable = this.createObs(this.fbRefExpenseList, this.expenseTable);
 
     this.fbRefIncomeList = this.createList('incomeTable');
-    this.fbIncomeObservable = this.createObs(this.fbRefIncomeList,this.incomeTable);
+    this.fbIncomeObservable = this.createObs(this.fbRefIncomeList, this.incomeTable);
 
     this.fbRefGuestList = this.createList('guestsTable');
-    this.fbGuestObservable = this.createObs(this.fbRefGuestList,this.guestTable);
+    this.fbGuestObservable = this.createObs(this.fbRefGuestList, this.guestTable);
 
     this.fbRefLookupList = this.createList('lookups');
-    this.fbLookupObservable = this.createObs(this.fbRefLookupList,this.lookupTable);
+    this.fbLookupObservable = this.createObs(this.fbRefLookupList, this.lookupTable);
 
     this.fbRefMessageList = this.createList('messages');
-    this.fbMessageObservable = this.createObs(this.fbRefMessageList,this.messageCenter);
+    this.fbMessageObservable = this.createObs(this.fbRefMessageList, this.messageCenter);
   }
 
-  createList(list){
-    return this.af.list('/'+list);
+  createList(list) {
+    return this.af.list('/' + list);
   }
 
-  createObs(refList,table) {
+  createObs(refList, table) {
     let temp: Observable<any[]>;
 
     temp = refList.valueChanges();
-    return temp.subscribe(res => table.next(res))
+    return temp.subscribe(res => table.next(res));
   }
 
   changeCurPage(page) {
     console.log(page);
-    this.currentPage.next(page)
+    this.currentPage.next(page);
   }
 
   navigateTo(page) {
     this.router.navigate([page.toLowerCase()]);
   }
 
-  updateList(list,item){
+  updateList(list, item) {
     console.log(item);
-    this[list].update(item.key,item);
+    this[list].update(item.key, item);
   }
 
-  addToList(list,item){
-    let newSongRef = this[list].push({});
+  addToList(list, item) {
+    const newSongRef = this[list].push({});
     item.key = newSongRef.key;
     newSongRef.set(item);
   }
 
-  removeItemFormList(list,item){
+  removeItemFormList(list, item) {
     this[list].remove(item.key);
   }
 
-  OrderArray(list,property){
-    return list.sort(function compare(a,b) {
-      if (a[property] < b[property])
+  OrderArray(list, property) {
+    return list.sort(function compare(a, b) {
+      if (a[property] < b[property]) {
         return -1;
-      if (a[property] > b[property])
+      }
+      if (a[property] > b[property]) {
         return 1;
+      }
       return 0;
-    })
+    });
   }
 
   setUser(user) {
-    this.UserData.next({displayName: user.displayName, photoURL:user.photoURL, uid:user.uid});
+    this.UserData.next({displayName: user.displayName, photoURL: user.photoURL, uid: user.uid});
     this.checkToken(user.uid);
   }
 
@@ -117,40 +119,40 @@ export class DataService {
     this.currentPage.next('');
   }
 
-  checkToken(uid){
+  checkToken(uid) {
     const vm = this;
     let returnToken = false;
     this.guests.forEach(function (value) {
       value.forEach(function (obj) {
-        if(obj.uid){
-          if(obj.uid === uid){
+        if (obj.uid) {
+          if (obj.uid === uid) {
             returnToken = true;
             vm.isLoggedIn.next(true);
-            if(vm.currentPage.getValue() === ''){
+            if (vm.currentPage.getValue() === '') {
               vm.navigateTo('home');
             }
           }
         }
-      })
+      });
     });
 
     return returnToken;
   }
 
-  newToken(token: number,uid) {
+  newToken(token: number, uid) {
     let returnToken = false;
-    let updateItem:any;
+    let updateItem: any;
 
     const vm = this;
     this.guests.forEach(function (value) {
 
       value.forEach(function (obj) {
-        if(obj.token === token){
-          if(!obj.uid){
+        if (obj.token === token) {
+          if (!obj.uid) {
             updateItem = {...obj};
 
             updateItem.uid = uid;
-            vm.updateList('fbRefGuestList',updateItem);
+            vm.updateList('fbRefGuestList', updateItem);
             vm.isLoggedIn.next(true);
             returnToken = true;
           }

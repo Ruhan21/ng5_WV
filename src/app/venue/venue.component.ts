@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxCarousel, NgxCarouselStore  } from 'ngx-carousel';
-import {DataService} from '../data.service'
+import {DataService} from '../data.service';
 
 @Component({
   selector: 'app-venue',
@@ -59,7 +59,7 @@ export class VenueComponent implements OnInit {
       load: 2,
       touch: true,
       easing: 'ease'
-    }
+    };
   }
 
   public carouselTileLoad(evt: any) {

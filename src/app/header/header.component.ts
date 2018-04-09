@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {DataService} from '../data.service'
-import {AngularFireAuth} from "angularfire2/auth";
+import {DataService} from '../data.service';
+import {AngularFireAuth} from 'angularfire2/auth';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
   navBtns = [];
   curPage: string;
-  isVisibile:boolean = true;
+  isVisibile = true;
 
   constructor(private afAuth: AngularFireAuth, private _data: DataService) {
     this._data.loggedIn.subscribe(res => this.isVisibile = res);
@@ -21,16 +21,16 @@ export class HeaderComponent implements OnInit {
     this._data.navBtns.subscribe(res => this.navBtns = res);
   }
 
-  signOut(){
-    let result = this.afAuth.auth.signOut();
-    if(result){
+  signOut() {
+    const result = this.afAuth.auth.signOut();
+    if (result) {
       this._data.signOut();
       this.navigateTo('login');
     }
   }
 
   navigateTo(page) {
-    this._data.navigateTo(page)
+    this._data.navigateTo(page);
   }
 
   isVisibleOnMobile(page) {

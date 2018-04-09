@@ -2,12 +2,21 @@
   <mat-toolbar-row>
 
 
-      <div style="overflow-x: hidden" class="container" fxLayout  fxLayoutAlign="start" fxLayoutGap="30px" fxLayoutGap.lt-sm="10px">
-          <button [fxHide.lt-sm]="isVisibleOnMobile(navBtns[0])" (click)="navigateTo(navBtns[0])" mat-raised-button color="accent">{{navBtns[0]}}</button>
-          <button [fxHide.lt-sm]="isVisibleOnMobile(navBtns[1])" (click)="navigateTo(navBtns[1])" mat-raised-button color="accent">{{navBtns[1]}}</button>
-          <button [fxHide.lt-sm]="isVisibleOnMobile(navBtns[2])" (click)="navigateTo(navBtns[2])" mat-raised-button color="accent">{{navBtns[2]}}</button>
-          <button [fxHide.lt-sm]="isVisibleOnMobile(navBtns[3])" (click)="navigateTo(navBtns[3])" mat-raised-button color="accent">{{navBtns[3]}}</button>
-      </div>
+    <div style="overflow-x: hidden" class="container" fxLayout fxLayoutAlign="start" fxLayoutGap="30px"
+         fxLayoutGap.lt-sm="10px">
+      <button [fxHide.lt-sm]="isVisibleOnMobile(navBtns[0])" (click)="navigateTo(navBtns[0])" mat-raised-button
+              color="accent">{{navBtns[0]}}
+      </button>
+      <button [fxHide.lt-sm]="isVisibleOnMobile(navBtns[1])" (click)="navigateTo(navBtns[1])" mat-raised-button
+              color="accent">{{navBtns[1]}}
+      </button>
+      <button [fxHide.lt-sm]="isVisibleOnMobile(navBtns[2])" (click)="navigateTo(navBtns[2])" mat-raised-button
+              color="accent">{{navBtns[2]}}
+      </button>
+      <button [fxHide.lt-sm]="isVisibleOnMobile(navBtns[3])" (click)="navigateTo(navBtns[3])" mat-raised-button
+              color="accent">{{navBtns[3]}}
+      </button>
+    </div>
 
     <span class="example-spacer"></span>
     <mat-icon (click)="navigateTo('dashboard')" class="example-icon">settings</mat-icon>

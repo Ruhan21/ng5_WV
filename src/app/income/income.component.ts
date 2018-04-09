@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
+import {Component, OnInit} from '@angular/core';
+import {DataService} from '../data.service';
 import {MatTableDataSource} from '@angular/material';
 import * as moment from 'moment';
 
@@ -10,12 +10,12 @@ import * as moment from 'moment';
 })
 export class IncomeComponent implements OnInit {
 
-  constructor(private _data:DataService) {
+  constructor(private _data: DataService) {
   }
 
-  types = ['Monthly','Once off'];
+  types = ['Monthly', 'Once off'];
 
-  incomeModel = {type: '',description: '',amount: '',date: ''};
+  incomeModel = {type: '', description: '', amount: '', date: ''};
   income = [];
 
   ngOnInit() {
@@ -24,25 +24,25 @@ export class IncomeComponent implements OnInit {
 
   addIncome() {
     this.incomeModel.date = moment(this.incomeModel.date).format('DD-MM-YYYY');
-    this._data.addToList('fbRefIncomeList',this.incomeModel);
-    this.incomeModel = {type: '',description: '',amount: '',date: ''};
+    this._data.addToList('fbRefIncomeList', this.incomeModel);
+    this.incomeModel = {type: '', description: '', amount: '', date: ''};
   }
 
   displayedColumns = ['type', 'description', 'amount', 'date', 'actions'];
-  dataSource :any;
+  dataSource: any;
   loading = false;
 
-  setIncome(res){
-    if(res.length > 0){
+  setIncome(res) {
+    if (res.length > 0) {
       this.loading = true;
       this.income = res;
       return new MatTableDataSource(this.income);
     }
   }
 
-  removeItem(item){
+  removeItem(item) {
     console.log(item);
-    this._data.removeItemFormList('fbRefIncomeList',item);
+    this._data.removeItemFormList('fbRefIncomeList', item);
   }
 
   applyFilter(filterValue: string) {

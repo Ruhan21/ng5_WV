@@ -2,7 +2,8 @@
   <mat-card class="message-from" fxFlex fxFlex.gt-sm="40%" fxFlexOffset.gt-sm="10%">
     <form #f="ngForm">
       <mat-card-header>
-        <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + user.photoURL + ')','background-size':'cover'}"></div>
+        <div mat-card-avatar
+             [ngStyle]="{'background-image': 'url(' + user.photoURL + ')','background-size':'cover'}"></div>
         <mat-card-title>Hi {{user.displayName}}</mat-card-title>
         <mat-card-subtitle>Leave us a message</mat-card-subtitle>
         <mat-icon class="message-icon">verified_user</mat-icon>
@@ -21,7 +22,7 @@
 
       <div class="form-group">
         <button (click)="fileClick()" mat-raised-button color="accent">Attach</button>
-        <input hidden type="file" id="file"(change)="handleFileSelect($event)">
+        <input hidden type="file" id="file" (change)="handleFileSelect($event)">
       </div>
 
       <div class="container" style="margin-bottom: 50px; margin-top: 10px" fxLayout>
@@ -30,7 +31,9 @@
 
       <div class="move-bottom">
         <mat-card-actions>
-          <button style="left: 15px;" (click)="addPost(f);" [disabled]="!f.valid" mat-raised-button color="accent">Post Message</button>
+          <button style="left: 15px;" (click)="addPost(f);" [disabled]="!f.valid" mat-raised-button color="accent">Post
+            Message
+          </button>
         </mat-card-actions>
 
         <section>
@@ -49,7 +52,8 @@
   <h1>Message Center</h1>
 </div>
 
-<div *ngIf="messagesLoaded" class="container" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="15px">
+<div *ngIf="messagesLoaded" class="container" fxLayout.gt-sm="row" fxLayout="column" fxLayoutAlign="center"
+     fxLayoutGap="15px">
 
   <div fxFlex="30">
     <div class="container" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="15px">
@@ -61,8 +65,9 @@
               <div fxFlex="90">
 
                 <div style="padding: 15px 0 15px 0; display: flex; align-items: center" class="container" fxLayout>
-                  <div mat-card-avatar class="user-image" [ngStyle]="{'background-image': 'url(' + tile.photoUrl + ')'}"></div>
-                  <p style="padding-left: 15px">Message from: <strong>{{tile.from}}</strong> </p>
+                  <div mat-card-avatar class="user-image"
+                       [ngStyle]="{'background-image': 'url(' + tile.photoUrl + ')'}"></div>
+                  <p style="padding-left: 15px">Message from: <strong>{{tile.from}}</strong></p>
                 </div>
 
                 <p>{{tile.message}}</p>
@@ -89,8 +94,9 @@
               <div fxFlex="90">
 
                 <div style="padding: 15px 0 15px 0; display: flex; align-items: center" class="container" fxLayout>
-                  <div mat-card-avatar class="user-image" [ngStyle]="{'background-image': 'url(' + tile.photoUrl + ')'}"></div>
-                  <p style="padding-left: 15px">Message from: <strong>{{tile.from}}</strong> </p>
+                  <div mat-card-avatar class="user-image"
+                       [ngStyle]="{'background-image': 'url(' + tile.photoUrl + ')'}"></div>
+                  <p style="padding-left: 15px">Message from: <strong>{{tile.from}}</strong></p>
                 </div>
 
                 <p>{{tile.message}}</p>
@@ -117,8 +123,9 @@
               <div fxFlex="90">
 
                 <div style="padding: 15px 0 15px 0; display: flex; align-items: center" class="container" fxLayout>
-                  <div mat-card-avatar class="user-image" [ngStyle]="{'background-image': 'url(' + tile.photoUrl + ')'}"></div>
-                  <p style="padding-left: 15px">Message from: <strong>{{tile.from}}</strong> </p>
+                  <div mat-card-avatar class="user-image"
+                       [ngStyle]="{'background-image': 'url(' + tile.photoUrl + ')'}"></div>
+                  <p style="padding-left: 15px">Message from: <strong>{{tile.from}}</strong></p>
                 </div>
 
                 <p>{{tile.message}}</p>
