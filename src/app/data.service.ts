@@ -130,6 +130,8 @@ export class DataService {
             vm.isLoggedIn.next(true);
             if (vm.currentPage.getValue() === '') {
               vm.navigateTo('home');
+            } else {
+              vm.navigateTo(vm.currentPage.getValue());
             }
           }
         }

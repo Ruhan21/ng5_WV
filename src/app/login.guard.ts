@@ -16,6 +16,9 @@ export class LoginGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
+    console.log(state.url);
+    console.log(next);
+    this._data.changeCurPage(next.url[0].path);
      return this.status;
   }
 }

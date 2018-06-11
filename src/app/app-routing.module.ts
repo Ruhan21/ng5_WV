@@ -54,7 +54,7 @@ const routes: Routes = [
     canActivate: [LoginGuard]
   },
   {
-    path: 'login',
+    path: '',
     component: LoginComponent
   }
 ];

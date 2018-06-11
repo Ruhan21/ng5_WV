@@ -5,7 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
+    "build": "ng build --prod --build-optimizer",
+    "prod": "angular-http-server --path=dist 127.0.0.1 -p 3030 -o",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
