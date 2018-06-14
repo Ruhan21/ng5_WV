@@ -9,19 +9,34 @@
     }
   }
 
-  .table {
-    //border: 1px solid black;
-    border-radius: 50%;
-    width: 200px;
-    height: 200px;
-    margin: 10px 0 10px 0;
-    background-image: url("../../assets/images/guests/table_2.jpg");
-    background-size:cover;
-    &:hover{
-      cursor: pointer;
-      opacity: 1;
+  .table-container{
+    display: flex;
+    align-items: center;
+
+    .table {
+      //border: 1px solid black;
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      margin: 15px auto;
+      box-shadow: 2px 2px 20px grey;
+      transition: 0.2s linear;
+      &:hover{
+        cursor: pointer;
+        opacity: 1;
+        transform: scale(1.2,1.2);
+      }
     }
   }
+}
+
+.guest-names{
+  font-family: 'Great Vibes', cursive;
+  font-size: 30px;
+}
+
+h2{
+  font-family: 'Dancing Script', cursive;
 }
 
 @media only screen and (max-width: 1024px) {
