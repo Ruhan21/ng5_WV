@@ -39,6 +39,11 @@ export class LoginComponent implements OnInit {
       .signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
+  facebookLogin() {
+    this.afAuth.auth
+      .signInWithPopup(new firebase.auth.FacebookAuthProvider());
+  }
+
   submitToken() {
     if (this._data.newToken(this.token, this.user.uid)) {
       this._data.navigateTo('home');
