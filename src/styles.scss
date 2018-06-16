@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import url('https://fonts.googleapis.com/css?family=Courgette|Dancing+Script|Great+Vibes|Shadows+Into+Light+Two|Tangerine');
+@import url('https://fonts.googleapis.com/css?family=Courgette|Dancing+Script|Great+Vibes|Shadows+Into+Light+Two|Tangerine|Philosopher');
 
 body{
   //font-family: 'Dancing Script', cursive;
@@ -8,5 +8,11 @@ body{
   //font-family: 'Great Vibes', cursive;
   //font-family: 'Tangerine', cursive;
   //font-family: 'Shadows Into Light Two', cursive;
+  //font-family: 'Philosopher', sans-serif;
+}
+
+p{
+  font-family: 'Philosopher', sans-serif;
+  font-size: 23px;
 }
 

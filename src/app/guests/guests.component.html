@@ -25,19 +25,11 @@
       </mat-card>
     </div>
     <h2>Dress code</h2>
-    <div fxLayout fxLayout.lt-sm="column" fxLayoutGap="30px">
-        <mat-card fxFlex fxFlex.gt-sm="25%">
-          <img src="../../assets/images/guests/m1.jpeg" class="img-responsive" alt="">
-        </mat-card>
-        <mat-card fxFlex fxFlex.gt-sm="25%">
-          <img src="../../assets/images/guests/m2.jpeg" alt="">
-        </mat-card>
-        <mat-card fxFlex fxFlex.gt-sm="25%">
-          <img src="../../assets/images/guests/w1.jpeg" alt="">
-        </mat-card>
-        <mat-card fxFlex fxFlex.gt-sm="25%">
-          <img src="../../assets/images/guests/w2.jpeg" alt="">
-        </mat-card>
+
+    <div fxLayout fxLayout.lt-sm="column" fxLayoutAlign="center center"  fxLayoutGap="30px" fxLayoutWrap="scroll">
+      <div *ngFor="let img of imgList" class="img" fxFlex="15">
+        <img src="../../assets/images/guests/{{img}}" alt="" class="img-responsive">
+      </div>
     </div>
   </div>
 </div>

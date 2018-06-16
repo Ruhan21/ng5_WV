@@ -15,6 +15,8 @@ export class GuestsComponent implements OnInit {
   guestList = [];
   currTable: number;
 
+  imgList = ['m1.jpeg','m2.jpeg','m3.jpeg','m4.jpeg','m5.jpeg','w1.jpeg','w2.jpeg','w3.jpeg','w4.jpeg','w5.jpeg'];
+
   constructor(private _data: DataService) {
     this._data.guests.subscribe(res => this.setupGuests(res));
   }

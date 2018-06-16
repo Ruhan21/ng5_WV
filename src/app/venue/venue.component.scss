@@ -37,3 +37,45 @@ h1{
   border-radius: 999px;
   right: 0;
 }
+
+.img{
+
+  width: 402px;
+  height: auto;
+
+  .img-responsive{
+    max-height: 100%;
+    max-width: 100%;
+    box-shadow: 2px 2px 20px grey;
+    border-radius: 1%;
+    transition: 0.5s linear;
+    margin: 0 auto;
+  }
+
+  &:hover{
+    .img-responsive{
+      transform: scale(1.1,1.1);
+    }
+  }
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  text-align: left;
+  padding: 8px;
+  font-family: 'Philosopher', sans-serif;
+
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.small{
+  font-size: 15px;
+}
