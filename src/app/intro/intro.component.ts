@@ -10,6 +10,7 @@ import {DataService} from '../data.service';
 export class IntroComponent implements OnInit {
 
   user: any;
+  guestItem: any;
 
   constructor(private _data: DataService) {
     this._data.user.subscribe(res => {
@@ -19,6 +20,8 @@ export class IntroComponent implements OnInit {
         this.user.photoURL = 'assets/images/intro/default.png';
       }
     });
+
+    this._data.guests.subscribe(res => this.setupGuests(res));
   }
 
   curPage = 'home';
@@ -31,5 +34,18 @@ export class IntroComponent implements OnInit {
     btn.addEventListener('click', function () {
       alert('hello');
     });
+  }
+
+  setupGuests(res) {
+    res.forEach(value => {
+      if (value.uid === this.user.uid) {
+        this.guestItem = value;
+      }
+    });
+  }
+
+  acceptInvite() {
+    this.guestItem.going = true;
+    this._data.updateList('fbRefGuestList', this.guestItem);
   }
 }

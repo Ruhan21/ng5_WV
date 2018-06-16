@@ -11,7 +11,7 @@
   </div>
 
   <div class="container main-images" fxLayout fxLayoutAlign="center">
-    <mat-card fxFlex="60%" fxFlex.lt-sm="100%">
+    <mat-card fxFlex="60%" fxFlex.lt-sm="100%" class="invite">
       <div style="background-image: url(../../assets/images/backgrounds/bg2.jpg); background-size:cover; min-height: 450px; position: relative">
 
         <div class="container" fxLayout fxLayoutAlign="left" fxLayoutGap="10px">
@@ -38,20 +38,13 @@
                 dolor.Donec maximus elit fringilla risus tincidunt,
               </p>
 
-              <p>
-                ornare. Vestibulum cursus rutrum
-                dolor.Donec maximus elit fringilla risus tincidunt,
-                ornare. Vestibulum cursus rutrum
-                dolor.Donec maximus elit fringilla risus tincidunt,
-                ornare.
-              </p>
             </div>
           </div>
         </div>
 
         <div [ngStyle.lt-sm]="{'position': 'relative'}" style="position: absolute; bottom: 0px;">
           <div class="container" fxLayout fxLayoutGap="20px">
-            <button mat-raised-button color="accent">Accept</button>
+            <button mat-raised-button color="accent" (click)="acceptInvite()">Accept</button>
             <button mat-raised-button color="accent">Decline</button>
           </div>
 

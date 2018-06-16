@@ -7,27 +7,37 @@
           <div *ngFor="let item of tables" fxFlex="25%" fxFlex.lt-sm="50%">
             <div (click)="selectTable(item)" class="table-container">
               <img src="../../assets/images/guests/table_2.jpg" class="table" alt="">
-              {{item.table}}
+              <p class="table-numbers">{{item.table}}</p>
             </div>
           </div>
         </div>
       </mat-card>
       <mat-card fxFlex fxFlex.gt-sm="30%" class="guest-names">
         <p>Guest list for Table: {{currTable}}</p>
-        <div *ngFor="let item of guestList">
-          <ul>
-            <li>{{item.name}}</li>
-          </ul>
+        <div fxLayout fxLayoutAlign="center" fxLayoutWrap="wrap">
+          <div *ngFor="let item of guestList" fxFlex="50%">
+            <ul>
+              <li>{{item.name}}</li>
+            </ul>
+          </div>
         </div>
 
       </mat-card>
     </div>
     <h2>Dress code</h2>
-    <div fxLayout fxLayoutGap="30px">
-      <mat-card fxFlex fxFlex.gt-sm="25%"></mat-card>
-      <mat-card fxFlex fxFlex.gt-sm="25%"></mat-card>
-      <mat-card fxFlex fxFlex.gt-sm="25%"></mat-card>
-      <mat-card fxFlex fxFlex.gt-sm="25%"></mat-card>
+    <div fxLayout fxLayout.lt-sm="column" fxLayoutGap="30px">
+        <mat-card fxFlex fxFlex.gt-sm="25%">
+          <img src="../../assets/images/guests/m1.jpeg" class="img-responsive" alt="">
+        </mat-card>
+        <mat-card fxFlex fxFlex.gt-sm="25%">
+          <img src="../../assets/images/guests/m2.jpeg" alt="">
+        </mat-card>
+        <mat-card fxFlex fxFlex.gt-sm="25%">
+          <img src="../../assets/images/guests/w1.jpeg" alt="">
+        </mat-card>
+        <mat-card fxFlex fxFlex.gt-sm="25%">
+          <img src="../../assets/images/guests/w2.jpeg" alt="">
+        </mat-card>
     </div>
   </div>
 </div>
