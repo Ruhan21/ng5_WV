@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   totalExpense = 0;
   totalIncome = 0;
   totalGuests = 0;
-  endDate = moment('07-04-2019').format('DD-MM-YYYY');
+  endDate = moment('18-05-2019', 'DD-MM-YYYY').format('DD-MM-YYYY');
   currentDate = moment().format('DD-MM-YYYY');
 
 
@@ -206,7 +206,8 @@ export class DashboardComponent implements OnInit {
     let incomeRecieved = 0;
     let futureIncome = 0;
     res.forEach(function (value) {
-      const numOfMonthsToGo = moment(vm.endDate, 'DD-MM-YYYY').diff(vm.currentDate, 'months');
+
+      const numOfMonthsToGo = moment(vm.endDate, 'DD-MM-YYYY').diff(moment(vm.currentDate, 'DD-MM-YYYY'), 'months');
       const numOfMonthsPast = moment(vm.currentDate, 'DD-MM-YYYY').diff(moment(value.date, 'DD-MM-YYYY'), 'months');
 
       if (value.type === 'Monthly') {

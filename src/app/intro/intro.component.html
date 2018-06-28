@@ -25,11 +25,7 @@
         <div class="container" fxLayout>
           <div  fxFlex="60%" fxFlex.lt-sm="100%">
             <div fxLayout="column">
-              <h4>
-                Nullam viverra eros vel diam egestas vulputate. Donec mollis pulvinar
-              </h4>
-
-              <p>
+              <p style="margin-bottom: 50px">
                 ornare. Vestibulum cursus rutrum
                 dolor.Donec maximus elit fringilla risus tincidunt,
                 ornare. Vestibulum cursus rutrum
@@ -42,12 +38,21 @@
           </div>
         </div>
 
-        <div [ngStyle.lt-sm]="{'position': 'relative'}" style="position: absolute; bottom: 0px;">
-          <div class="container" fxLayout fxLayoutGap="20px">
+        <!--[ngStyle.lt-sm]="{'position': 'relative'}" style="position: absolute; bottom: 0px;"-->
+        <div>
+          <div *ngIf="!guestItem.declined && !guestItem.going" class="container" fxLayout fxLayoutGap="20px">
             <button mat-raised-button color="accent" (click)="acceptInvite()">Accept</button>
-            <button mat-raised-button color="accent">Decline</button>
+            <button mat-raised-button color="accent" (click)="declineInvite()">Decline</button>
           </div>
-
+          <div *ngIf="guestItem.going && guestItem.plusOne" class="container" fxLayout fxLayoutGap="20px">
+            <div fxLayout="column" fxLayoutGap="20px">
+              <p>You have the option to invite a plus one. Please indicate if you will be bringing along someone with you.</p>
+              <div fxLayout="">
+                <button *ngIf="!guestItem.plusOneGoing" mat-raised-button color="accent" (click)="acceptPlusOneInvite()">Will bring a plus one</button>
+                <button *ngIf="guestItem.plusOneGoing" mat-raised-button color="accent" (click)="acceptPlusOneInvite()">Going solo</button>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>

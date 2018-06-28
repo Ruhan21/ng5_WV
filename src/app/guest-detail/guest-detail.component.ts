@@ -14,11 +14,21 @@ export class GuestDetailComponent implements OnInit {
 
   types = ['Friend', 'Family'];
 
-  guestModel = {type: '', name: '', surname: '', table: '', going: false, token: 0};
+  guestModel = {
+    type: '',
+    name: '',
+    surname: '',
+    table: '',
+    going: false,
+    declined: false,
+    token: 0,
+    plusOne: false,
+    plusOneGoing: false
+  };
   guest = [];
   isNew = true;
   lastToken = 0;
-  displayedColumns = ['type', 'name', 'surname', 'table', 'token', 'actions'];
+  displayedColumns = ['type', 'name', 'surname', 'table', 'token', 'actions', 'plusOne', 'plusOneGoing'];
   dataSource: any;
   loading = false;
 
@@ -28,7 +38,17 @@ export class GuestDetailComponent implements OnInit {
 
   editItem() {
     this._data.updateList('fbRefGuestList', this.guestModel);
-    this.guestModel = {type: '', name: '', surname: '', table: '', going: false, token: 0};
+    this.guestModel = {
+      type: '',
+      name: '',
+      surname: '',
+      table: '',
+      going: false,
+      declined: false,
+      token: 0,
+      plusOne: false,
+      plusOneGoing: false
+    };
     this.isNew = true;
   }
 
@@ -37,7 +57,17 @@ export class GuestDetailComponent implements OnInit {
       this.guestModel.token = (this.lastToken + 1);
       this.guestModel.token = this.getRandomInt(1, 1000);
       this._data.addToList('fbRefGuestList', this.guestModel);
-      this.guestModel = {type: '', name: '', surname: '', table: '', going: false, token: 0};
+      this.guestModel = {
+        type: '',
+        name: '',
+        surname: '',
+        table: '',
+        going: false,
+        declined: false,
+        token: 0,
+        plusOne: false,
+        plusOneGoing: false
+      };
     } else {
       this.editItem();
     }
@@ -59,6 +89,12 @@ export class GuestDetailComponent implements OnInit {
   updateSelected($event, item) {
     console.log($event);
     item.going = $event.checked;
+    this._data.updateList('fbRefGuestList', item);
+  }
+
+  updatePlusOne($event, item) {
+    console.log($event);
+    item.plusOne = $event.checked;
     this._data.updateList('fbRefGuestList', item);
   }
 

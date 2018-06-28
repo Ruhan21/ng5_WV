@@ -12,9 +12,13 @@ export class HeaderComponent implements OnInit {
   navBtns = [];
   curPage: string;
   isVisibile = true;
+  userUid = '';
 
   constructor(private afAuth: AngularFireAuth, private _data: DataService) {
-    this._data.loggedIn.subscribe(res => this.isVisibile = res);
+    this._data.loggedIn.subscribe(res => {
+      this.isVisibile = res;
+      this._data.user.subscribe(user => this.userUid = user.uid);
+    });
   }
 
   ngOnInit() {

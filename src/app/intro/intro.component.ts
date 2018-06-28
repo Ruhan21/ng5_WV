@@ -46,6 +46,18 @@ export class IntroComponent implements OnInit {
 
   acceptInvite() {
     this.guestItem.going = true;
+    this.guestItem.declined = false;
+    this._data.updateList('fbRefGuestList', this.guestItem);
+  }
+
+  declineInvite() {
+    this.guestItem.declined = true;
+    this.guestItem.going = false;
+    this._data.updateList('fbRefGuestList', this.guestItem);
+  }
+
+  acceptPlusOneInvite() {
+    this.guestItem.plusOneGoing = !this.guestItem.plusOneGoing;
     this._data.updateList('fbRefGuestList', this.guestItem);
   }
 }
