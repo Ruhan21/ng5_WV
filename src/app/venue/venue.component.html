@@ -1,16 +1,18 @@
-<div class="venue-intro"></div>
+<!--<div class="venue-intro"></div>-->
 
-<ngx-carousel
-  [inputs]="carouselTile"
-  (carouselLoad)="carouselTileLoad($event)">
+<!--<ngx-carousel-->
+  <!--[inputs]="carouselTile"-->
+  <!--(carouselLoad)="carouselTileLoad($event)">-->
 
-  <ngx-tile NgxCarouselItem *ngFor="let Tile of carouselTileItems">
-    <img src="http://via.placeholder.com/500x500" alt="" style="width: 100%; height: auto">
-  </ngx-tile>
+  <!--<ngx-tile NgxCarouselItem *ngFor="let Tile of carouselTileItems">-->
+    <!--<img src="http://via.placeholder.com/500x500" alt="" style="width: 100%; height: auto">-->
+  <!--</ngx-tile>-->
 
-  <button NgxCarouselPrev class='leftRs'>&lt;</button>
-  <button NgxCarouselNext class='rightRs'>&gt;</button>
-</ngx-carousel>
+  <!--<button NgxCarouselPrev class='leftRs'>&lt;</button>-->
+  <!--<button NgxCarouselNext class='rightRs'>&gt;</button>-->
+<!--</ngx-carousel>-->
+
+<ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
 
 <div fxLayout="column" fxLayoutGap="30px">
   <div class="container" fxLayout fxLayout.lt-sm="column" fxLayoutAlign="center" fxLayoutGap="30px">

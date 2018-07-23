@@ -30,6 +30,7 @@ import { ExpensesDetailComponent } from './expenses-detail/expenses-detail.compo
 import { GuestDetailComponent } from './guest-detail/guest-detail.component';
 import { LoginComponent } from './login/login.component';
 import { LoginGuard } from './login.guard';
+import {NgxGalleryModule} from "ngx-gallery";
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCn7sK1OE6sSSDS0nL-aYEwa-E1et3j-_Q',
@@ -66,7 +67,8 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    NgxGalleryModule
   ],
   providers: [DataService, LoginGuard],
   bootstrap: [AppComponent]
