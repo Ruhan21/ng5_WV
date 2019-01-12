@@ -28,7 +28,7 @@ export class GuestDetailComponent implements OnInit {
   guest = [];
   isNew = true;
   lastToken = 0;
-  displayedColumns = ['type', 'name', 'surname', 'table', 'token', 'actions', 'plusOne', 'plusOneGoing'];
+  displayedColumns = ['type', 'name', 'surname', 'table', 'token', 'going', 'plusOne', 'plusOneGoing', 'remove'];
   dataSource: any;
   loading = false;
 
@@ -55,7 +55,7 @@ export class GuestDetailComponent implements OnInit {
   addGuest() {
     if (this.isNew) {
       this.guestModel.token = (this.lastToken + 1);
-      this.guestModel.token = this.getRandomInt(1, 1000);
+      this.guestModel.token = Math.floor(Math.random() * 1000) + 1000;
       this._data.addToList('fbRefGuestList', this.guestModel);
       this.guestModel = {
         type: '',

@@ -2,6 +2,14 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import url('https://fonts.googleapis.com/css?family=Courgette|Dancing+Script|Great+Vibes|Shadows+Into+Light+Two|Tangerine|Philosopher');
 
+html{
+  height: 100%;
+}
+
+body{
+  min-height: 100%;
+}
+
 body{
   //font-family: 'Dancing Script', cursive;
   //font-family: 'Courgette', cursive;

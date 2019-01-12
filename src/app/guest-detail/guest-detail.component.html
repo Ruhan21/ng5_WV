@@ -95,8 +95,8 @@
             <mat-cell *matCellDef="let guest"> {{guest.declined}}</mat-cell>
           </ng-container>
 
-          <ng-container matColumnDef="actions">
-            <mat-header-cell *matHeaderCellDef> action</mat-header-cell>
+          <ng-container matColumnDef="going">
+            <mat-header-cell *matHeaderCellDef> Going</mat-header-cell>
             <mat-cell *matCellDef="let row">
               <mat-slide-toggle
                 (change)="updateSelected($event,row)"
@@ -114,15 +114,23 @@
                 class="example-margin"
                 [checked]="guest.plusOne">
               </mat-slide-toggle>
-              <button mat-icon-button color="primary" focusable="false" (click)="removeItem(row)">
-                <mat-icon>delete</mat-icon>
-              </button>
             </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="plusOneGoing">
             <mat-header-cell *matHeaderCellDef> plusOneGoing</mat-header-cell>
-            <mat-cell *matCellDef="let guest"> {{guest.plusOneGoing}}</mat-cell>
+            <mat-cell *matCellDef="let guest">
+              {{guest.plusOneGoing}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="remove">
+            <mat-header-cell *matHeaderCellDef> Remove</mat-header-cell>
+            <mat-cell *matCellDef="let guest">
+              <button mat-icon-button color="primary" focusable="false" (click)="removeItem(guest)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-cell>
           </ng-container>
 
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

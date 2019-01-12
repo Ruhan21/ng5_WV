@@ -66,7 +66,7 @@
           <div class="card">
             <img class="card-image" src="../../assets/images/intro/c1.jpg" alt="">
             <div class="container" fxLayout fxLayoutAlign="center">
-              <button fxFlex mat-raised-button color="accent">Venue</button>
+              <button fxFlex mat-raised-button color="accent" (click)="navigateTo('venue')">Venue</button>
             </div>
           </div>
         </mat-card>
@@ -74,7 +74,7 @@
           <div class="card">
             <img class="card-image" src="../../assets/images/intro/c5.jpg" alt="">
             <div class="container" fxLayout fxLayoutAlign="center">
-              <button fxFlex mat-raised-button color="accent">Guests</button>
+              <button fxFlex mat-raised-button color="accent" (click)="navigateTo('guests')">Guests</button>
             </div>
           </div>
         </mat-card>
@@ -82,7 +82,7 @@
           <div class="card">
             <img class="card-image" src="../../assets/images/intro/c4.jpg" alt="">
             <div class="container" fxLayout fxLayoutAlign="center">
-              <button fxFlex mat-raised-button color="accent">Messages</button>
+              <button fxFlex mat-raised-button color="accent" (click)="navigateTo('messages')">Messages</button>
             </div>
           </div>
         </mat-card>
@@ -93,6 +93,6 @@
 
 
 
-  <input type="submit" value="click me" id="btn">
+  <input hidden type="submit" value="click me" id="btn">
 
 

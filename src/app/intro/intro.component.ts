@@ -60,4 +60,8 @@ export class IntroComponent implements OnInit {
     this.guestItem.plusOneGoing = !this.guestItem.plusOneGoing;
     this._data.updateList('fbRefGuestList', this.guestItem);
   }
+
+  navigateTo(page) {
+    this._data.navigateTo(page);
+  }
 }
