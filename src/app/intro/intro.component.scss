@@ -21,7 +21,11 @@
 }
 
 .avatar {
+  margin: 0 10px 0 0;
   border-radius: 90%;
+  height: 150px;
+  width: 150px;
+  box-shadow: 2px 2px 100px #666666;
 }
 
 .invite{
@@ -31,5 +35,37 @@
   p{
     font-family: 'Dancing Script', cursive;
     font-size: 30px;
+  }
+}
+
+@media only screen and (max-width: 809px) {
+  .avatar {
+    height: 300px;
+    width: 300px;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .avatar {
+    margin: 0 10px 0 0;
+    height: 150px;
+    width: 150px
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .avatar {
+    height: 300px;
+    width: 300px;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .avatar {
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
   }
 }

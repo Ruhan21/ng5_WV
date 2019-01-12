@@ -1,9 +1,9 @@
 
   <div class="container" fxLayout="column" fxLayoutAlign="center">
-    <div fxFlex style="background-image: url(../../assets/images/intro/B1.jpg); background-size:cover; border:ridge; background-attachment: fixed;">
+    <div fxFlex [ngStyle.lt-lg]="{'background-attachment': 'inherit'}" style="background-image: url(../../assets/images/intro/intro_b.png); background-size:cover; border:ridge; background-attachment: fixed;">
       <div style="min-height: 450px;" [ngStyle.lt-sm]="{'min-height':'250px'}">
         <div class="container" fxLayout fxLayoutAlign="left" fxLayoutAlign.lt-sm="center">
-          <img [ngStyle.lt-sm]="{'transform': 'scale(0.9)'}" fxFlexFill.lt-sm src="../../assets/images/intro/Logo.png"/>
+          <!--<img [ngStyle.lt-sm]="{'transform': 'scale(0.9)'}" fxFlexFill.lt-sm src="../../assets/images/intro/Logo.png"/>-->
         </div>
 
       </div>
@@ -14,8 +14,8 @@
     <mat-card fxFlex="60%" fxFlex.lt-sm="100%" class="invite">
       <div style="background-image: url(../../assets/images/backgrounds/bg2.jpg); background-size:cover; min-height: 450px; position: relative">
 
-        <div class="container" fxLayout fxLayoutAlign="left" fxLayoutGap="10px">
-          <img class="avatar" style="height: 150px; width: 150px" src="{{user.photoURL}}" alt="">
+        <div class="container" fxLayout="row wrap" fxLayoutAlign="left">
+          <img class="avatar" src="{{user.photoURL}}" alt="">
           <div class="container" fxLayout="column" fxLayoutGap="10px">
             <h3>Dear</h3>
             <h1 style="display: flex;align-items: center;">{{user.displayName}}</h1>
@@ -23,7 +23,7 @@
         </div>
 
         <div class="container" fxLayout>
-          <div  fxFlex="60%" fxFlex.lt-sm="100%">
+          <div  fxFlex="100" fxFlex.gt-sm="60">
             <div fxLayout="column">
               <p style="margin-bottom: 50px">
                 ornare. Vestibulum cursus rutrum
@@ -64,7 +64,7 @@
       <div class="container" fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="30px">
         <mat-card fxFlex>
           <div class="card">
-            <img class="card-image" src="../../assets/images/intro/c1.jpg" alt="">
+            <img class="card-image" src="../../assets/images/intro/intro_1.png" alt="">
             <div class="container" fxLayout fxLayoutAlign="center">
               <button fxFlex mat-raised-button color="accent" (click)="navigateTo('venue')">Venue</button>
             </div>
@@ -72,7 +72,7 @@
         </mat-card>
         <mat-card fxFlex>
           <div class="card">
-            <img class="card-image" src="../../assets/images/intro/c5.jpg" alt="">
+            <img class="card-image" src="../../assets/images/intro/intro_5.png" alt="">
             <div class="container" fxLayout fxLayoutAlign="center">
               <button fxFlex mat-raised-button color="accent" (click)="navigateTo('guests')">Guests</button>
             </div>
@@ -80,7 +80,7 @@
         </mat-card>
         <mat-card fxFlex>
           <div class="card">
-            <img class="card-image" src="../../assets/images/intro/c4.jpg" alt="">
+            <img class="card-image" src="../../assets/images/intro/intro_3.png" alt="">
             <div class="container" fxLayout fxLayoutAlign="center">
               <button fxFlex mat-raised-button color="accent" (click)="navigateTo('messages')">Messages</button>
             </div>

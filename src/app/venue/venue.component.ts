@@ -10,9 +10,6 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
 })
 export class VenueComponent implements OnInit {
 
-  // public carouselTileItems: Array<any>;
-  // public carouselTile: NgxCarousel;
-
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
 
@@ -24,54 +21,17 @@ export class VenueComponent implements OnInit {
 
     this._data.changeCurPage(this.currPage);
 
-    // this.carouselTileItems = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
-    //
-    // this.carouselTile = {
-    //   grid: {xs: 2, sm: 3, md: 3, lg: 4, all: 0},
-    //   slide: 2,
-    //   speed: 1000,
-    //   loop: true,
-    //   interval: 6000,
-    //   animation: 'lazy',
-    //   point: {
-    //     visible: true,
-    //     pointStyles: `
-    //       .ngxcarouselPoint {
-    //         list-style-type: none;
-    //         text-align: center;
-    //         padding: 12px;
-    //         margin: 0;
-    //         white-space: nowrap;
-    //         overflow: auto;
-    //         box-sizing: border-box;
-    //       }
-    //       .ngxcarouselPoint li {
-    //         display: inline-block;
-    //         border-radius: 50%;
-    //         border: 2px solid rgba(0, 0, 0, 0.55);
-    //         padding: 4px;
-    //         margin: 0 3px;
-    //         transition-timing-function: cubic-bezier(.17, .67, .83, .67);
-    //         transition: .4s;
-    //       }
-    //       .ngxcarouselPoint li.active {
-    //           background: #6b6b6b;
-    //           transform: scale(1.2);
-    //       }
-    //     `
-    //   },
-    //   load: 2,
-    //   touch: true,
-    //   easing: 'ease'
-    // };
-
     this.galleryOptions = [
       {
         width: '100%',
         height: '600px',
-        thumbnailsColumns: 4,
+        thumbnailsColumns: 3,
         imageAnimation: NgxGalleryAnimation.Slide,
-        imageAutoPlay: true, imageAutoPlayPauseOnHover: true, previewAutoPlay: true, previewAutoPlayPauseOnHover: true
+        imageAutoPlay: true,
+        imageAutoPlayPauseOnHover: true,
+        previewAutoPlay: true,
+        previewAutoPlayPauseOnHover: true,
+        imageAutoPlayInterval: 5000
       },
       // max-width 800
       {
@@ -95,16 +55,22 @@ export class VenueComponent implements OnInit {
         small: '../../assets/images/venue/v1.jpg',
         medium: '../../assets/images/venue/v1.jpg',
         big: '../../assets/images/venue/v1.jpg'
-      },
-      {
-        small: 'http://via.placeholder.com/500x500',
-        medium: 'http://via.placeholder.com/500x500',
-        big: 'http://via.placeholder.com/500x500'
-      },
-      {
-        small: 'http://via.placeholder.com/500x500',
-        medium: 'http://via.placeholder.com/500x500',
-        big: 'http://via.placeholder.com/500x500'
+      }, {
+        small: '../../assets/images/venue/v2.jpg',
+        medium: '../../assets/images/venue/v2.jpg',
+        big: '../../assets/images/venue/v2.jpg'
+      }, {
+        small: '../../assets/images/venue/v3.jpg',
+        medium: '../../assets/images/venue/v3.jpg',
+        big: '../../assets/images/venue/v3.jpg'
+      }, {
+        small: '../../assets/images/venue/v4.jpg',
+        medium: '../../assets/images/venue/v4.jpg',
+        big: '../../assets/images/venue/v4.jpg'
+      }, {
+        small: '../../assets/images/venue/v5.jpg',
+        medium: '../../assets/images/venue/v5.jpg',
+        big: '../../assets/images/venue/v5.jpg'
       }
     ];
   }

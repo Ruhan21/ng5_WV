@@ -31,6 +31,10 @@ export class MessagesComponent implements OnInit {
     this._data.changeCurPage(this.currPage);
   }
 
+  backToTop() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
   setupTiles(res) {
     if (res.length) {
       this.messagesLoaded = false;
