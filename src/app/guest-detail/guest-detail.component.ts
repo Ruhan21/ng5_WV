@@ -32,6 +32,8 @@ export class GuestDetailComponent implements OnInit {
   dataSource: any;
   loading = false;
 
+  duplicateTokenList = [];
+
   ngOnInit() {
     this._data.guests.subscribe(res => this.dataSource = this.setGuest(res));
   }
@@ -73,8 +75,21 @@ export class GuestDetailComponent implements OnInit {
     }
   }
 
-  getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+  lookForDuplicates() {
+    for (let i = 0; i < this.dataSource.length; i++) {
+      const guest = this.dataSource[i];
+      for (let j = 0; j < this.dataSource.length; j++) {
+        const searchGuest = this.dataSource[j];
+
+        if (guest.token === searchGuest.token && guest.name === searchGuest.name) {
+          this.duplicateTokenList.push(guest.token);
+        }
+      }
+    }
+
+    if (this.duplicateTokenList.length === 0) {
+      this.duplicateTokenList.push('no duplicates found');
+    }
   }
 
   setGuest(res) {

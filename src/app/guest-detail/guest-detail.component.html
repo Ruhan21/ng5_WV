@@ -56,6 +56,11 @@
 
   <div *ngIf="loading" fxLayout="row" fxLayoutAlign="center">
     <div fxFlex fxFlex.gt-sm="80%">
+      <button (click)="lookForDuplicates()" mat-raised-button color="accent">Check for dupicates</button>
+      <div *ngFor="let dup of duplicateTokenList">
+        <p>{{dup}}</p>
+      </div>
+
       <div class="example-container mat-elevation-z8">
         <div class="example-header">
           <mat-form-field>
