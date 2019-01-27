@@ -69,9 +69,33 @@ export class VenueComponent implements OnInit {
         medium: '../../assets/images/venue/v4.jpg',
         big: '../../assets/images/venue/v4.jpg'
       }, {
-        small: '../../assets/images/venue/v5.jpg',
-        medium: '../../assets/images/venue/v5.jpg',
-        big: '../../assets/images/venue/v5.jpg'
+        small: '../../assets/images/venue/v6.jpg',
+        medium: '../../assets/images/venue/v6.jpg',
+        big: '../../assets/images/venue/v6.jpg'
+      }, {
+        small: '../../assets/images/venue/v7.jpg',
+        medium: '../../assets/images/venue/v7.jpg',
+        big: '../../assets/images/venue/v7.jpg'
+      }, {
+        small: '../../assets/images/venue/v8.jpg',
+        medium: '../../assets/images/venue/v8.jpg',
+        big: '../../assets/images/venue/v8.jpg'
+      }, {
+        small: '../../assets/images/venue/v9.jpg',
+        medium: '../../assets/images/venue/v9.jpg',
+        big: '../../assets/images/venue/v9.jpg'
+      }, {
+        small: '../../assets/images/venue/v10.jpg',
+        medium: '../../assets/images/venue/v10.jpg',
+        big: '../../assets/images/venue/v10.jpg'
+      }, {
+        small: '../../assets/images/venue/v11.jpg',
+        medium: '../../assets/images/venue/v11.jpg',
+        big: '../../assets/images/venue/v11.jpg'
+      }, {
+        small: '../../assets/images/venue/v12.jpg',
+        medium: '../../assets/images/venue/v12.jpg',
+        big: '../../assets/images/venue/v12.jpg'
       }
     ];
   }
