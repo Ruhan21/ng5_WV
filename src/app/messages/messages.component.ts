@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../data.service';
 import {AngularFireStorage} from 'angularfire2/storage';
+import {isUndefined} from "util";
 
 @Component({
   selector: 'app-messages',
@@ -81,6 +82,10 @@ export class MessagesComponent implements OnInit {
       attachmentUrl: this.downloadURL,
       key: key
     };
+
+    if (isUndefined(payload.attachmentUrl)) {
+      payload.attachmentUrl = false;
+    }
 
     return payload;
   }
