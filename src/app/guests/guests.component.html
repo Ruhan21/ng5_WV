@@ -1,6 +1,12 @@
 <div class="container margin-top" fxLayout fxLayoutAlign="center">
   <div fxFlex fxFlex.gt-sm="90%">
-    <div fxLayout fxLayoutGap="30px" fxLayout.lt-md="column">
+    <div *ngIf="!showTables" class="container tables" fxLayoutAlign="center" fxLayout fxLayoutWrap="wrap">
+      <mat-card fxFlex="100">
+        <h2 style="text-align: center">Seating arrangements and allocations will be available to view here in the near future.</h2>
+      </mat-card>
+    </div>
+
+    <div *ngIf="showTables"  fxLayout fxLayoutGap="30px" fxLayout.lt-md="column">
       <div fxFlex="70%" fxFlex.lt-sm>
         <div fxLayoutAlign fxLayoutAlign="center">
           <h2>Tables</h2>
@@ -28,7 +34,11 @@
     </div>
 
     <div fxLayoutAlign fxLayoutAlign="center">
-      <h2>Dress code</h2>
+      <h2 style="margin-bottom: 0">Dress code: Formal </h2>
+    </div>
+
+    <div fxLayoutAlign fxLayoutAlign="center">
+      <p>No jeans, T-shirts, sneakers or sandals allowed </p>
     </div>
 
     <div fxLayout fxLayout.lt-sm="column" fxLayoutAlign="center center"  fxLayoutGap="30px" fxLayoutWrap="scroll">

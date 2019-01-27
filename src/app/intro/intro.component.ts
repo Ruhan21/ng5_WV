@@ -27,6 +27,8 @@ export class IntroComponent implements OnInit {
   curPage = 'home';
 
   ngOnInit() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+
     const btn = document.getElementById('btn');
 
     this._data.changeCurPage(this.curPage);

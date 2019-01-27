@@ -31,11 +31,29 @@
 .invite{
   font-family: 'Dancing Script', cursive;
   font-size: 22px;
+  color: #000000;
 
   p{
-    font-family: 'Dancing Script', cursive;
+    font-family: 'Philosopher', sans-serif;
     font-size: 30px;
+    text-align: center;
+    margin: 15px 0 15px 0;
   }
+
+  .dancing{
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+  }
+
+  .dancing-2{
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+  }
+
+  //p{
+  //  font-family: 'Dancing Script', cursive;
+  //  font-size: 30px;
+  //}
 }
 
 @media only screen and (max-width: 809px) {

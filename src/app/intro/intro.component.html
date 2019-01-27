@@ -1,18 +1,17 @@
 
   <div class="container" fxLayout="column" fxLayoutAlign="center">
-    <div fxFlex [ngStyle.lt-lg]="{'background-attachment': 'inherit'}" style="background-image: url(../../assets/images/intro/intro_b.png); background-size:cover; border:ridge; background-attachment: fixed;">
+    <div fxFlex [ngStyle.lt-lg]="{'background-attachment': 'inherit'}" style="background-image: url(../../assets/images/intro/intro_b3.png); -webkit-filter: grayscale(1); filter: grayscale(1); background-size:cover; border:ridge; background-attachment: fixed;">
       <div style="min-height: 450px;" [ngStyle.lt-sm]="{'min-height':'250px'}">
         <div class="container" fxLayout fxLayoutAlign="left" fxLayoutAlign.lt-sm="center">
-          <!--<img [ngStyle.lt-sm]="{'transform': 'scale(0.9)'}" fxFlexFill.lt-sm src="../../assets/images/intro/Logo.png"/>-->
+          <img style="margin: 10px;" [ngStyle.lt-sm]="{'transform': 'scale(0.9)','margin-right':'13rem','width':'150px','height': '150px'}" fxFlexFill.lt-sm src="../../assets/images/intro/logo-final.png"/>
         </div>
-
       </div>
     </div>
   </div>
 
   <div class="container main-images" fxLayout fxLayoutAlign="center">
     <mat-card fxFlex="60%" fxFlex.lt-sm="100%" class="invite">
-      <div style="background-image: url(../../assets/images/backgrounds/bg2.jpg); background-size:cover; min-height: 450px; position: relative">
+      <div style="background-image: url(../../assets/images/backgrounds/bg2.jpg); background-size:cover; background-position-x: right; min-height: 450px; position: relative">
 
         <div class="container" fxLayout="row wrap" fxLayoutAlign="left">
           <img class="avatar" src="{{user.photoURL}}" alt="">
@@ -26,14 +25,15 @@
           <div  fxFlex="100" fxFlex.gt-sm="60">
             <div fxLayout="column">
               <p style="margin-bottom: 50px">
-                ornare. Vestibulum cursus rutrum
-                dolor.Donec maximus elit fringilla risus tincidunt,
-                ornare. Vestibulum cursus rutrum
-                dolor.Donec maximus elit fringilla risus tincidunt,
-                ornare. Vestibulum cursus rutrum
-                dolor.Donec maximus elit fringilla risus tincidunt,
+                It is with great pleasure,<br> that we, <br> <span class="dancing">Ruhan Odendaal</span> <br> & <br> <span class="dancing">Boraine Barnard</span>
+                <br> invite you to join us in
+                celebrating our wedding day on the <br> <span class="dancing">18th of May 2019</span> <br> at the Blades hotel.
               </p>
-
+              <p>The ceremony will commence at <br> <span class="dancing">15h30</span>,<br> therefore, you are welcome to arrive at
+                <br> <span class="dancing">15h00</span>.</p>
+              <p>Dinner & Dancing to follow after the ceremony.</p>
+              <p>We regret <br> <span class="dancing"> No Children Allowed </span></p>
+              <p>Please <span class="dancing-2">RSVP</span> on our website before or on the <span class="dancing-2">11th of March 2019</span> .</p>
             </div>
           </div>
         </div>
@@ -48,8 +48,8 @@
             <div fxLayout="column" fxLayoutGap="20px">
               <p>You have the option to invite a plus one. Please indicate if you will be bringing along someone with you.</p>
               <div fxLayout="">
-                <button *ngIf="!guestItem.plusOneGoing" mat-raised-button color="accent" (click)="acceptPlusOneInvite()">Will bring a plus one</button>
-                <button *ngIf="guestItem.plusOneGoing" mat-raised-button color="accent" (click)="acceptPlusOneInvite()">Going solo</button>
+                <button *ngIf="!guestItem.plusOneGoing" mat-raised-button color="accent" (click)="acceptPlusOneInvite()">I am bringing a plus one</button>
+                <button *ngIf="guestItem.plusOneGoing" mat-raised-button color="accent" (click)="acceptPlusOneInvite()">I am going solo</button>
               </div>
             </div>
           </div>

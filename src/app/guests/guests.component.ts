@@ -14,8 +14,9 @@ export class GuestsComponent implements OnInit {
   tables = [];
   guestList = [];
   currTable: number;
+  showTables = false;
 
-  imgList = ['m1.jpeg','m2.jpeg','m3.jpeg','m4.jpeg','m5.jpeg','w1.jpeg','w2.jpeg','w3.jpeg','w4.jpeg','w5.jpeg'];
+  imgList = ['m1.jpeg', 'm2.jpeg', 'm3.jpeg', 'm4.jpeg', 'm5.jpeg', 'w1.jpeg', 'w2.jpeg', 'w3.jpeg', 'w4.jpeg', 'w5.jpeg'];
 
   constructor(private _data: DataService) {
     this._data.guests.subscribe(res => this.setupGuests(res));
@@ -23,6 +24,7 @@ export class GuestsComponent implements OnInit {
 
   ngOnInit() {
     this._data.changeCurPage(this.currPage);
+    window.scrollTo({top: 0, behavior: 'smooth'});
   }
 
   setupGuests(res) {

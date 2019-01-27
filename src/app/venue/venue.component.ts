@@ -18,6 +18,7 @@ export class VenueComponent implements OnInit {
   currPage = 'Venue';
 
   ngOnInit() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
 
     this._data.changeCurPage(this.currPage);
 

@@ -29,6 +29,7 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit() {
     this._data.changeCurPage(this.currPage);
+    window.scrollTo({top: 0, behavior: 'smooth'});
   }
 
   backToTop() {
@@ -36,7 +37,9 @@ export class MessagesComponent implements OnInit {
   }
 
   setupTiles(res) {
-    if (res.length) {
+    const messageList = [...res];
+
+    if (messageList.length) {
       this.messagesLoaded = false;
       const vm = this;
       let count = 0;
@@ -44,7 +47,7 @@ export class MessagesComponent implements OnInit {
       vm.tiles1 = [];
       vm.tiles2 = [];
 
-      res.reverse().forEach(function (value) {
+      messageList.reverse().forEach(function (value) {
         switch (count) {
           case 0: vm.tiles1.push(value);
             break;
