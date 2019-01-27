@@ -3,7 +3,7 @@
     <div fxFlex [ngStyle.lt-lg]="{'background-attachment': 'inherit'}" style="background-image: url(../../assets/images/intro/intro_b3.png); -webkit-filter: grayscale(1); filter: grayscale(1); background-size:cover; border:ridge; background-attachment: fixed;">
       <div style="min-height: 450px;" [ngStyle.lt-sm]="{'min-height':'250px'}">
         <div class="container" fxLayout fxLayoutAlign="left" fxLayoutAlign.lt-sm="center">
-          <img style="margin: 10px;" [ngStyle.lt-sm]="{'margin-right':'13rem','width':'150px','height': '150px'}" fxFlexFill.lt-sm src="../../assets/images/intro/logo-final.png"/>
+          <img style="margin: 10px;" [ngStyle.lt-sm]="{'margin-right':'6.5rem','width':'auto','height': 'auto'}" fxFlexFill.lt-sm src="../../assets/images/intro/logo-final.png"/>
         </div>
       </div>
     </div>
@@ -14,10 +14,15 @@
       <div style="background-image: url(../../assets/images/backgrounds/bg2.jpg); background-size:cover; background-position-x: right; min-height: 450px; position: relative">
 
         <div class="container" fxLayout="row wrap" fxLayoutAlign="left">
-          <img *ngIf="!user.isAnon" class="avatar" src="{{user.photoURL}}" alt="">
           <div class="container" fxLayout="column" fxLayoutGap="10px">
             <h3>Dear</h3>
             <h1 style="display: flex;align-items: center;">{{user.displayName}}</h1>
+          </div>
+        </div>
+
+        <div class="container" fxLayout="row wrap" fxLayoutAlign="left">
+          <div style="width: 100%" class="container" fxLayout="column" fxLayoutGap="10px">
+            <img *ngIf="!user.isAnon" class="avatar" src="{{user.photoURL}}" alt="">
           </div>
         </div>
 

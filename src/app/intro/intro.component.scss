@@ -21,7 +21,7 @@
 }
 
 .avatar {
-  margin: 0 10px 0 0;
+  margin: 0 0 0 13rem;
   border-radius: 90%;
   height: 150px;
   width: 150px;
@@ -45,7 +45,7 @@
     font-size: 4rem;
   }
 
-  .dancing-2{
+    .dancing-2{
     font-family: 'Dancing Script', cursive;
     font-size: 2rem;
   }
@@ -58,32 +58,32 @@
 
 @media only screen and (max-width: 809px) {
   .avatar {
-    height: 300px;
-    width: 300px;
+    height: auto;
+    width: 20%;
     margin: 0 auto;
   }
 }
 
 @media only screen and (max-width: 600px) {
   .avatar {
-    margin: 0 10px 0 0;
-    height: 150px;
-    width: 150px
+    height: auto;
+    width: 20%;
+    margin: 0 auto;
   }
 }
 
 @media only screen and (max-width: 480px) {
   .avatar {
-    height: 300px;
-    width: 300px;
+    height: auto;
+    width: 15%;
     margin: 0 auto;
   }
 }
 
 @media only screen and (max-width: 350px) {
   .avatar {
-    height: 200px;
-    width: 200px;
+    height: auto;
+    width: auto;
     margin: 0 auto;
   }
 }
