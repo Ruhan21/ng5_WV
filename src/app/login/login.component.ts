@@ -44,6 +44,10 @@ export class LoginComponent implements OnInit {
       .signInWithPopup(new firebase.auth.FacebookAuthProvider());
   }
 
+  AnonLogin(){
+    this.afAuth.auth.signInAnonymously();
+  }
+
   submitToken() {
     if (this._data.newToken(this.token, this.user.uid)) {
       this._data.navigateTo('home');

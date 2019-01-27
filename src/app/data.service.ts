@@ -4,12 +4,12 @@ import {Router} from '@angular/router';
 
 import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import {Observable} from 'rxjs/Observable';
-
+import {isNullOrUndefined} from "util";
 
 @Injectable()
 export class DataService {
 
-  private UserData = new BehaviorSubject<any>({displayName: '', photoURL: '', uid: ''});
+  private UserData = new BehaviorSubject<any>({isAnon: false, displayName: '', photoURL: '', uid: ''});
   private navigationButtons = new BehaviorSubject<any>(['Home', 'Venue', 'Guests', 'Messages', 'Login']);
   private currentPage = new BehaviorSubject<any>('');
   private expenseTable = new BehaviorSubject<any>([]);
@@ -109,13 +109,50 @@ export class DataService {
   }
 
   setUser(user) {
-    this.UserData.next({displayName: user.displayName, photoURL: user.photoURL, uid: user.uid});
-    this.checkToken(user.uid);
+    if (isNullOrUndefined(user.displayName)) {
+      this.getNewUserContext(user.uid);
+    } else {
+      this.UserData.next({isAnon: false, displayName: user.displayName, photoURL: user.photoURL, uid: user.uid});
+    }
+
+    if (!this.checkToken(user.uid)) {
+      this.isLoggedIn.next(false);
+    }
+  }
+
+  getNewUserContext(uid) {
+    const vm = this;
+    const currentUid = uid;
+    const $guestList = this.guestTable;
+    let foundUser = false;
+
+    $guestList.subscribe(res => {
+      res.forEach(function (value) {
+        if (value.uid === uid) {
+          foundUser = true;
+          vm.UserData.next({
+            isAnon: true,
+            displayName: value.name + ' ' + value.surname,
+            photoURL: 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg',
+            uid: currentUid
+          });
+        }
+      });
+
+      if (!foundUser) {
+        vm.UserData.next({
+          isAnon: true,
+          displayName: null,
+          photoURL: 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg',
+          uid: currentUid
+        });
+      }
+    });
   }
 
   signOut() {
     this.isLoggedIn.next(false);
-    this.UserData.next({displayName: '', photoURL: '', uid: ''});
+    this.UserData.next({isAnon: false, displayName: '', photoURL: '', uid: ''});
     this.currentPage.next('');
   }
 
@@ -146,18 +183,25 @@ export class DataService {
     let updateItem: any;
 
     const vm = this;
+
     this.guests.forEach(function (value) {
 
       value.forEach(function (obj) {
         if (obj.token === token) {
-          if (!obj.uid) {
-            updateItem = {...obj};
+          updateItem = {...obj};
 
-            updateItem.uid = uid;
-            vm.updateList('fbRefGuestList', updateItem);
-            vm.isLoggedIn.next(true);
-            returnToken = true;
+          updateItem.uid = uid;
+          vm.updateList('fbRefGuestList', updateItem);
+          if (isNullOrUndefined(vm.UserData.getValue().displayName)) {
+            vm.UserData.next({
+              isAnon: true,
+              displayName: updateItem.name + ' ' + updateItem.surname,
+              photoURL: 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg',
+              uid: uid
+            });
           }
+          vm.isLoggedIn.next(true);
+          returnToken = true;
         }
       });
 

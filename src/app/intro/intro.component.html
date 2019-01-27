@@ -14,7 +14,7 @@
       <div style="background-image: url(../../assets/images/backgrounds/bg2.jpg); background-size:cover; background-position-x: right; min-height: 450px; position: relative">
 
         <div class="container" fxLayout="row wrap" fxLayoutAlign="left">
-          <img class="avatar" src="{{user.photoURL}}" alt="">
+          <img *ngIf="!user.isAnon" class="avatar" src="{{user.photoURL}}" alt="">
           <div class="container" fxLayout="column" fxLayoutGap="10px">
             <h3>Dear</h3>
             <h1 style="display: flex;align-items: center;">{{user.displayName}}</h1>
@@ -34,6 +34,8 @@
               <p>Dinner & Dancing to follow after the ceremony.</p>
               <p>We regret <br> <span class="dancing"> No Children Allowed </span></p>
               <p>Please <span class="dancing-2">RSVP</span> on our website before or on the <span class="dancing-2">11th of March 2019</span> .</p>
+
+              <p *ngIf="guestItem.declined || guestItem.going" class="dancing-2">Thank you for your response</p>
             </div>
           </div>
         </div>
